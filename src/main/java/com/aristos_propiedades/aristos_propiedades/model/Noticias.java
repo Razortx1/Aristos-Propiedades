@@ -3,6 +3,9 @@ package com.aristos_propiedades.aristos_propiedades.model;
 import java.sql.Blob;
 import java.sql.Date;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Noticias {
     private Integer id_noticia;
     private String mensaje;
