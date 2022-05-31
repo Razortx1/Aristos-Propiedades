@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AristosController {
     @GetMapping("/index")
     public String index() {
-        return "html/login";
+        return "html/index";
     }
     
 }
