@@ -1,5 +1,8 @@
 package com.aristos_propiedades.aristos_propiedades.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Usuario {
     private Integer id_user;
     private String Nombre;

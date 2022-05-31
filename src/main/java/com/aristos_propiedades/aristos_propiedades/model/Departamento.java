@@ -2,6 +2,10 @@ package com.aristos_propiedades.aristos_propiedades.model;
 
 import java.sql.Blob;
 
+import javax.persistence.Entity;
+
+
+@Entity
 public class Departamento {
     private Integer id_propiedad;
     private String baños;
