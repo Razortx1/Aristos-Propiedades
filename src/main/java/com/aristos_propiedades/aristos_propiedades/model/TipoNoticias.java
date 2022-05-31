@@ -1,9 +1,11 @@
 package com.aristos_propiedades.aristos_propiedades.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class TipoNoticias {
+    @Id
     private Integer id_tiponoticias;
     private String tipo_de_noticias;
     public TipoNoticias() {

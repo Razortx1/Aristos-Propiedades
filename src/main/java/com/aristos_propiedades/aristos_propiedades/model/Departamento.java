@@ -3,10 +3,12 @@ package com.aristos_propiedades.aristos_propiedades.model;
 import java.sql.Blob;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 
 @Entity
 public class Departamento {
+    @Id
     private Integer id_propiedad;
     private String baños;
     private String habitaciones;

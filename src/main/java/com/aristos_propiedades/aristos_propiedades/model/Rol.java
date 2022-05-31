@@ -1,9 +1,11 @@
 package com.aristos_propiedades.aristos_propiedades.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Rol {
+    @Id
     private Integer id_rol;
     private String Rol;
     public Rol() {

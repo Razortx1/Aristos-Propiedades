@@ -1,9 +1,11 @@
 package com.aristos_propiedades.aristos_propiedades.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class EstadoVentaArriendo {
+    @Id
     private Integer id_estadoventa;
     private String Estado;
     public EstadoVentaArriendo() {
