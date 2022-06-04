@@ -11,10 +11,36 @@
 <body>
     <div class="container mt-4">
         <form action="" method="post" th:object="${propiedad}">
-            <p>Titulo: <input type="text" id="Titulo_Propiedad" placeholder="Ingrese el titulo" th:field="*{Titulo_Propiedad}"></p>
-            <p>Tipo de propiedad: <select name="tipo de propiedad" id="tipo de propiedad" th:field="*{tipoprop}">
-                <option th:value="tipopropiedad.id_tipo_propiedad" th:each="tipopropiedad : ${tipoprop}" th:text="${tipopropiedad.tipo_de_propiedad}"></option>
+            <p>Titulo: <input type="text" id="Titulo_Propiedad" placeholder="Ingrese el titulo" th:field="*{Titulo_Propiedad}" required></p>
+            <p>Tipo de propiedad: <select name="tipo_propiedad" id="tipo_propiedad" th:field="*{id_tipo_propiedad}">
+                <option th:value="tipo_propiedad.id_tipo_propiedad" th:each="tipo_propiedad : ${tipoprop}" th:text="${tipo_propiedad.tipo_de_propiedad}"></option>
             </select></p>
+            <p>Venta o Arriendo: <select name="estadoventaarriendo" id="ventaarriendo" th:field="*{id_estadoventa}">
+                <option th:value="estado_venta_arriendo.id_estadoventa" th:each="estado_venta_arriendo : ${estadoprop}" th:text="${estado_venta_arriendo.Estado}"></option>
+            </select></p>
+            <p>Cantidad de baños: <input type="text" th:field="*{baños}" required placeholder="Ingrese cantidad de baños"></p>
+            <p>Cantidad de habitaciones: <input type="text" th:field="*{baños}" required placeholder="Ingrese cantidad de habitaciones"></p>
+            <p>Cantidad de terrazas: <input type="text" th:field="*{terrazas}" required placeholder="Ingrese cantidad de terrazas"></p>
+            <p>Cantidad de quincho: <input type="text" th:field="*{quincho}" required placeholder="Ingrese quincho"></p>
+            <p>Valor de la propiedad en UF: <input type="text" th:field="*{valor}" required placeholder="Ingrese valor en UF"></p>
+            <p>Posee estacionamiento? <select name="estacionamiento" id="poseeest" th:field="*{estacionamiento}">
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+            </select></p>
+            <p>Posee patio? <select name="patio" id="poseepat" th:field="*{patio}">
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+            </select></p>
+            <p>M2 Terreno: <input type="text" th:field="*{m2_terreno}" required placeholder="Ingrese M2 de terreno"></p>
+            <p>M2 Construidos: <input type="text" th:field="*{m2_construidos}" required placeholder="Ingrese M2 construidos"></p>
+            <p>Ubicacion: <input type="text" th:field="*{ubicacion}" required placeholder="Ingrese la ubicacion"></p>
+            <p>Ingrese una imagen de la propiedad
+                <input type="file" name="imagen" id="imagenes" th:field="*{imagenes_propiedad}">
+            </p>
+            <p>
+                <input type="submit" value="Crear Propiedad" class="btn btn-info">
+                <input type="reset" value="Borrar formulario" class="btn btn-warning">
+            </p>
         </form>
     </div>
 </body>

@@ -10,9 +10,11 @@ public class TipoPropiedad {
     private String tipo_de_propiedad;
     public TipoPropiedad() {
     }
+    
     public TipoPropiedad(String tipo_de_propiedad) {
         this.tipo_de_propiedad = tipo_de_propiedad;
     }
+
     public Integer getId_tipo_propiedad() {
         return id_tipo_propiedad;
     }

@@ -3,7 +3,6 @@ package com.aristos_propiedades.aristos_propiedades.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +25,7 @@ public class CorredorController {
     
     @GetMapping("/create/propiedades")
     public ModelAndView mostrarFormularioCrearPropiedad(){
-        List<TipoPropiedad> tiposp =  _tiporepository.findAll(Sort.by("tipo_de_propiedad"));
+        List<TipoPropiedad> tiposp =  _tiporepository.findAll();
         List<EstadoVentaArriendo> estado = _ventaRepositorio.findAll();
         return new ModelAndView("/html/reg-prop")
                                                 .addObject("propiedad", new Propiedades())
