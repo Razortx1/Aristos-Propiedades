@@ -9,6 +9,13 @@
 
 </head>
 <body>
-    
+    <div class="container mt-4">
+        <form action="" method="post" th:object="${propiedad}">
+            <p>Titulo: <input type="text" id="Titulo_Propiedad" placeholder="Ingrese el titulo" th:field="*{Titulo_Propiedad}"></p>
+            <p>Tipo de propiedad: <select name="tipo de propiedad" id="tipo de propiedad" th:field="*{tipoprop}">
+                <option th:value="tipopropiedad.id_tipo_propiedad" th:each="tipopropiedad : ${tipoprop}" th:text="${tipopropiedad.tipo_de_propiedad}"></option>
+            </select></p>
+        </form>
+    </div>
 </body>
 </html>

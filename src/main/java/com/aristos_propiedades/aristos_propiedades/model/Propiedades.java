@@ -20,12 +20,12 @@ public class Propiedades {
     private Integer id_estadoventa;
     private String ubicacion;
     private Integer id_tipo_propiedad;
-    private Integer id_user;
+    private String Titulo_Propiedad;
     public Propiedades() {
     }
     public Propiedades(String baños, String habitaciones, String terrazas, String m2_terreno, String m2_construidos,
             String valor, String quincho, String estacionamiento, String patio, Blob imagenes_propiedad,
-            String ubicacion) {
+            Integer id_estadoventa, String ubicacion, Integer id_tipo_propiedad, String titulo_Propiedad) {
         this.baños = baños;
         this.habitaciones = habitaciones;
         this.terrazas = terrazas;
@@ -36,7 +36,10 @@ public class Propiedades {
         this.estacionamiento = estacionamiento;
         this.patio = patio;
         this.imagenes_propiedad = imagenes_propiedad;
+        this.id_estadoventa = id_estadoventa;
         this.ubicacion = ubicacion;
+        this.id_tipo_propiedad = id_tipo_propiedad;
+        this.Titulo_Propiedad = titulo_Propiedad;
     }
     public Integer getId_propiedad() {
         return id_propiedad;
@@ -122,11 +125,11 @@ public class Propiedades {
     public void setId_tipo_propiedad(Integer id_tipo_propiedad) {
         this.id_tipo_propiedad = id_tipo_propiedad;
     }
-    public Integer getId_user() {
-        return id_user;
+    public String getTitulo_Propiedad() {
+        return Titulo_Propiedad;
     }
-    public void setId_user(Integer id_user) {
-        this.id_user = id_user;
+    public void setTitulo_Propiedad(String titulo_Propiedad) {
+        Titulo_Propiedad = titulo_Propiedad;
     }
-    
+
 }
