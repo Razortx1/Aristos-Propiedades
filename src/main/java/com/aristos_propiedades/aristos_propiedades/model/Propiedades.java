@@ -1,10 +1,10 @@
 package com.aristos_propiedades.aristos_propiedades.model;
 
-import java.sql.Blob;
-import java.util.List;
 
+
+import javax.persistence.Entity;
 import javax.persistence.Id;
-
+@Entity
 public class Propiedades {
     @Id
     private Integer id_propiedad;
@@ -17,18 +17,17 @@ public class Propiedades {
     private String quincho;
     private String estacionamiento;
     private String patio;
-    private Blob imagenes_propiedad;
-    private List<EstadoVentaArriendo> id_estadoventa;
+    private Integer id_estadoventa;
     private String ubicacion;
-    private List<TipoPropiedad> id_tipo_propiedad;
+    private Integer id_tipo_propiedad;
     private String Titulo_Propiedad;
     public Propiedades() {
     }
-
-    public Propiedades(String baños, String habitaciones, String terrazas, String m2_terreno, String m2_construidos,
-            String valor, String quincho, String estacionamiento, String patio, Blob imagenes_propiedad,
-            List<EstadoVentaArriendo> id_estadoventa, String ubicacion, List<TipoPropiedad> id_tipo_propiedad,
-            String titulo_Propiedad) {
+   
+    public Propiedades(Integer id_propiedad, String baños, String habitaciones, String terrazas, String m2_terreno,
+            String m2_construidos, String valor, String quincho, String estacionamiento, String patio,
+            Integer id_estadoventa, String ubicacion, Integer id_tipo_propiedad, String titulo_Propiedad) {
+        this.id_propiedad = id_propiedad;
         this.baños = baños;
         this.habitaciones = habitaciones;
         this.terrazas = terrazas;
@@ -38,7 +37,6 @@ public class Propiedades {
         this.quincho = quincho;
         this.estacionamiento = estacionamiento;
         this.patio = patio;
-        this.imagenes_propiedad = imagenes_propiedad;
         this.id_estadoventa = id_estadoventa;
         this.ubicacion = ubicacion;
         this.id_tipo_propiedad = id_tipo_propiedad;
@@ -105,32 +103,22 @@ public class Propiedades {
     public void setPatio(String patio) {
         this.patio = patio;
     }
-    public Blob getImagenes_propiedad() {
-        return imagenes_propiedad;
-    }
-    public void setImagenes_propiedad(Blob imagenes_propiedad) {
-        this.imagenes_propiedad = imagenes_propiedad;
-    }
-    
-    public List<EstadoVentaArriendo> getId_estadoventa() {
+    public Integer getId_estadoventa() {
         return id_estadoventa;
     }
-
-    public void setId_estadoventa(List<EstadoVentaArriendo> id_estadoventa) {
+    public void setId_estadoventa(Integer id_estadoventa) {
         this.id_estadoventa = id_estadoventa;
     }
-
     public String getUbicacion() {
         return ubicacion;
     }
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
-
-    public List<TipoPropiedad> getId_tipo_propiedad() {
+    public Integer getId_tipo_propiedad() {
         return id_tipo_propiedad;
     }
-    public void setId_tipo_propiedad(List<TipoPropiedad> id_tipo_propiedad) {
+    public void setId_tipo_propiedad(Integer id_tipo_propiedad) {
         this.id_tipo_propiedad = id_tipo_propiedad;
     }
     public String getTitulo_Propiedad() {
@@ -139,5 +127,6 @@ public class Propiedades {
     public void setTitulo_Propiedad(String titulo_Propiedad) {
         Titulo_Propiedad = titulo_Propiedad;
     }
+    
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,6 +13,7 @@ import com.aristos_propiedades.aristos_propiedades.model.EstadoVentaArriendo;
 import com.aristos_propiedades.aristos_propiedades.model.Propiedades;
 import com.aristos_propiedades.aristos_propiedades.model.TipoPropiedad;
 import com.aristos_propiedades.aristos_propiedades.repository.estadoVentaRepositorio;
+import com.aristos_propiedades.aristos_propiedades.repository.propiedadRepository;
 import com.aristos_propiedades.aristos_propiedades.repository.tipoPropiedadRepository;
 
 @Controller
@@ -22,6 +24,9 @@ public class CorredorController {
 
     @Autowired
     private estadoVentaRepositorio _ventaRepositorio;
+
+    @Autowired
+    private propiedadRepository _propiedadRepository;
     
     @GetMapping("/create/propiedades")
     public ModelAndView mostrarFormularioCrearPropiedad(){
@@ -31,5 +36,11 @@ public class CorredorController {
                                                 .addObject("propiedad", new Propiedades())
                                                 .addObject("tipoprop", tiposp)
                                                 .addObject("estadoprop", estado);
+    }
+    @PostMapping("/create/propiedades")
+    public ModelAndView crearNuevaPropiedad(Propiedades propiedad){
+        propiedad.setId_propiedad(1);
+        this._propiedadRepository.save(propiedad);
+        return new ModelAndView("redirect:/corredor");
     }
 }
