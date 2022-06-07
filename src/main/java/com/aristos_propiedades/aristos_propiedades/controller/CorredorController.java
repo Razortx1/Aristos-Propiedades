@@ -1,5 +1,6 @@
 package com.aristos_propiedades.aristos_propiedades.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.aristos_propiedades.aristos_propiedades.model.TipoPropiedad;
 import com.aristos_propiedades.aristos_propiedades.repository.estadoVentaRepositorio;
 import com.aristos_propiedades.aristos_propiedades.repository.propiedadRepository;
 import com.aristos_propiedades.aristos_propiedades.repository.tipoPropiedadRepository;
+import com.aristos_propiedades.aristos_propiedades.service.ImageService;
 
 @Controller
 @RequestMapping("/corredor")
@@ -27,6 +29,14 @@ public class CorredorController {
 
     @Autowired
     private propiedadRepository _propiedadRepository;
+
+    @Autowired
+    private ImageService _ImageService;
+
+    @GetMapping()
+    public String indexCorredor(){
+        return "corredor/indexcorredor";
+    }
     
     @GetMapping("/create/propiedades")
     public ModelAndView mostrarFormularioCrearPropiedad(){
@@ -38,8 +48,9 @@ public class CorredorController {
                                                 .addObject("estadoprop", estado);
     }
     @PostMapping("/create/propiedades")
-    public ModelAndView crearNuevaPropiedad(Propiedades propiedad){
-        propiedad.setId_propiedad(1);
+    public ModelAndView crearNuevaPropiedad(Propiedades propiedad) throws IOException{
+        String patharchivo=this._ImageService.guardarArchivo(propiedad.getArchivoFile());
+        propiedad.setImagenes_propiedad(patharchivo);
         this._propiedadRepository.save(propiedad);
         return new ModelAndView("redirect:/corredor");
     }
