@@ -1,11 +1,23 @@
 package com.aristos_propiedades.aristos_propiedades.model;
 
+<<<<<<< Updated upstream
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+=======
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+>>>>>>> Stashed changes
 @Entity
 public class Usuario {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id_user;
     private String Nombre;
     private String Contraseña;
@@ -32,7 +44,9 @@ public class Usuario {
         return Contraseña;
     }
     public void setContraseña(String contraseña) {
-        Contraseña = contraseña;
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(contraseña);
+        this.Contraseña = encodedPassword;
     }
     public String getId_rol() {
         return id_rol;
