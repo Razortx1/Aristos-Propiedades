@@ -1,10 +1,5 @@
 package com.aristos_propiedades.aristos_propiedades.model;
 
-<<<<<<< Updated upstream
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-=======
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +8,6 @@ import javax.persistence.Id;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
->>>>>>> Stashed changes
 @Entity
 public class Usuario {
     @Id

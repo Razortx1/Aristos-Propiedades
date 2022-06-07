@@ -46,9 +46,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< Updated upstream
-	</dependencies>
-=======
 	
    <dependency>
      <groupId>javax</groupId>
@@ -61,7 +58,6 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
  </dependencies>
->>>>>>> Stashed changes
 
 	<build>
 		<plugins>
