@@ -1,25 +1,51 @@
 package com.aristos_propiedades.aristos_propiedades.service;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
-public class ImageService {
+public class ImageService implements ImageServiceSuper{
 
-    private String archivo = ".//src//main//resources//templates//image";
+    @Value("${storage.location}")
+    private String storageLocation;
 
-    public String guardarArchivo(MultipartFile file) throws IOException{
-        if (!archivo.isEmpty()) {
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(archivo, file.getOriginalFilename());
-            Files.write(path, bytes);
+    @PostConstruct
+    @Override
+    public void iniciarAlmacen() {
+        try {
+            Files.createDirectories(Paths.get(storageLocation));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return file.getOriginalFilename();
+        
     }
+
+    @Override
+    public String almacenerArchivo(MultipartFile file) {
+        String nombreArchivo = file.getOriginalFilename();
+        if(file.isEmpty()){
+            return "";
+        }
+        try {
+            InputStream inputStream = file.getInputStream();
+            Files.copy(inputStream, Paths.get(storageLocation).resolve(nombreArchivo), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return nombreArchivo;
+    }
+
+
+
 }

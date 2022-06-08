@@ -1,10 +1,11 @@
 package com.aristos_propiedades.aristos_propiedades.controller;
 
-import java.io.IOException;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ import com.aristos_propiedades.aristos_propiedades.model.TipoPropiedad;
 import com.aristos_propiedades.aristos_propiedades.repository.estadoVentaRepositorio;
 import com.aristos_propiedades.aristos_propiedades.repository.propiedadRepository;
 import com.aristos_propiedades.aristos_propiedades.repository.tipoPropiedadRepository;
-import com.aristos_propiedades.aristos_propiedades.service.ImageService;
+import com.aristos_propiedades.aristos_propiedades.service.ImageServiceSuper;
 
 @Controller
 @RequestMapping("/corredor")
@@ -31,7 +32,7 @@ public class CorredorController {
     private propiedadRepository _propiedadRepository;
 
     @Autowired
-    private ImageService _ImageService;
+    private ImageServiceSuper _ImageService;
 
     @GetMapping()
     public String indexCorredor(){
@@ -48,8 +49,8 @@ public class CorredorController {
                                                 .addObject("estadoprop", estado);
     }
     @PostMapping("/create/propiedades")
-    public ModelAndView crearNuevaPropiedad(Propiedades propiedad) throws IOException{
-        String patharchivo=this._ImageService.guardarArchivo(propiedad.getArchivoFile());
+    public ModelAndView crearNuevaPropiedad(@Validated Propiedades propiedad){
+        String patharchivo=this._ImageService.almacenerArchivo(propiedad.getArchivoFile());
         propiedad.setImagenes_propiedad(patharchivo);
         this._propiedadRepository.save(propiedad);
         return new ModelAndView("redirect:/corredor");
