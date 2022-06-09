@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container mt-4">
-        <form action="" method="post" th:object="${propiedad}">
+        <form action="" method="post" th:object="${propiedad}" enctype="multipart/form-data">
             <p>Titulo: <input type="text" id="Titulo_Propiedad" placeholder="Ingrese el titulo" th:field="*{Titulo_Propiedad}" required></p>
             <p>Tipo de propiedad: <select name="tipo_propiedad" id="tipo_propiedad" th:field="*{id_tipo_propiedad}">
                 <option th:value="${tipo_propiedad.id_tipo_propiedad}" th:each="tipo_propiedad : ${tipoprop}" th:text="${tipo_propiedad.tipo_de_propiedad}"></option>
@@ -35,7 +35,7 @@
             <p>M2 Construidos: <input type="text" th:field="*{m2_construidos}" required placeholder="Ingrese M2 construidos"></p>
             <p>Ubicacion: <input type="text" th:field="*{ubicacion}" required placeholder="Ingrese la ubicacion"></p>
             <p>Imagen de la propiedad:</p>
-            <p><input type="file" name="imagen" id="imagen" th:field="*{archivoFile}" required></p>
+            <p><input type="file" name="archivoFile" class="form-control" id="archivoFile" th:field="*{archivoFile}" required></p>
             <p>
                 <input type="submit" value="Crear Propiedad" class="btn btn-info">
                 <input type="reset" value="Borrar formulario" class="btn btn-warning">
