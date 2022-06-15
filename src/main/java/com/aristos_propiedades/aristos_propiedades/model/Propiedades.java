@@ -13,7 +13,7 @@ public class Propiedades {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_propiedad;
-    private String baños;
+    private String banios;
     private String habitaciones;
     private String terrazas;
     private String m2_terreno;
@@ -39,12 +39,11 @@ public class Propiedades {
     }
     public Propiedades() {
     }
-    
-    public Propiedades(String baños, String habitaciones, String terrazas, String m2_terreno, String m2_construidos,
+    public Propiedades(String banios, String habitaciones, String terrazas, String m2_terreno, String m2_construidos,
             String valor, String quincho, String estacionamiento, String patio, String imagenes_propiedad,
             Integer id_estadoventa, String ubicacion, Integer id_tipo_propiedad, String titulo_Propiedad,
             MultipartFile archivoFile) {
-        this.baños = baños;
+        this.banios = banios;
         this.habitaciones = habitaciones;
         this.terrazas = terrazas;
         this.m2_terreno = m2_terreno;
@@ -66,11 +65,11 @@ public class Propiedades {
     public void setId_propiedad(Integer id_propiedad) {
         this.id_propiedad = id_propiedad;
     }
-    public String getBaños() {
-        return baños;
+    public String getBanios() {
+        return banios;
     }
-    public void setBaños(String baños) {
-        this.baños = baños;
+    public void setBanios(String banios) {
+        this.banios = banios;
     }
     public String getHabitaciones() {
         return habitaciones;
@@ -151,5 +150,4 @@ public class Propiedades {
         Titulo_Propiedad = titulo_Propiedad;
     }
     
-
 }

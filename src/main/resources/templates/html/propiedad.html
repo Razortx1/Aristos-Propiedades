@@ -59,6 +59,26 @@
             </div>
           </nav>
     </div>
+    <div class="container" th:object="${propiedad}">
+        <div name="image">
+            <img th:src="@{/assets/{filename}(filename=*{imagenes_propiedad})}" th:alt="*{Titulo_Propiedad}" class="img-fluid rounded w-100">
+        </div>
+        <div name="body">
+            <h2 th:text="*{Titulo_Propiedad}" class="text text-center"></h2>
+            <p th:text="Valor + *{valor}"></p>
+            <p th:text="Baños + *{banios}"></p>
+            <p th:text="Habitaciones + *{habitaciones}"></p>
+            <p th:text="Terrazas + *{terrazas}"></p>
+            <p th:text="Quincho + *{quincho}"></p>
+            <p th:text="M2_Construidos + *{m2_construidos}"></p>
+            <p th:text="M2_de_Terreno + *{m2_terreno}"></p>
+            <p th:text="Estacionamiento + *{estacionamiento}"></p>
+            <p th:text="Patio + *{patio}"></p>
+            <p th:text="Ubicacion + *{ubicacion}"></p>
+            <p th:each="estado_venta_arriendo : ${estadoventa}" th:text="${estado_venta_arriendo.Estado}"></p>
+            <p th:each="tipo_propiedad : ${tipopropiedad}" th:text="${tipo_propiedad.tipo_de_propiedad}"></p>
+        </div>
+    </div>
     </div>
     <footer style="background-color: #FAB564; bottom: 0; position: relative; width: 100%;">
         <div class="container">

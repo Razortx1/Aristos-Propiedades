@@ -4,6 +4,8 @@ package com.aristos_propiedades.aristos_propiedades.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,5 +56,11 @@ public class CorredorController {
         propiedad.setImagenes_propiedad(patharchivo);
         this._propiedadRepository.save(propiedad);
         return new ModelAndView("redirect:/corredor");
+    }
+    @GetMapping("/listapropiedades")
+    public ModelAndView listarPropiedades(Pageable pageable){
+        Page<Propiedades> propiedades = this._propiedadRepository.findAll(pageable);
+        return new ModelAndView("corredor/propiedades")
+                                                        .addObject("propiedades", propiedades);
     }
 }
