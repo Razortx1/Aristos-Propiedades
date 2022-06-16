@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+    <h3>editar usuario</h3>
+    <form th:action="@{/user/{id}/update(id=*{id_user})}" th:object="${usuario}" method="post">
+        <input name="_method" type="hidden" value="PUT">
+        <p>Correo: <input type="email" th:field="*{correo}" readonly></p>
+        <p>Nombre: <input type="name" th:field="*{nombre}" ></p>
+        <p>Apellido: <input type="text" th:field="*{apellido}" ></p>
+        <p>Password: <input type="password" th:field="*contraseña}"></p>
+        <p><input type="submit" value="actualizar usuario" class="btn btn-primary btn-sm"></p>
+
+    </form>
+    <a href="/user">ver lista de usuarios</a>
+</body>
+</html>
