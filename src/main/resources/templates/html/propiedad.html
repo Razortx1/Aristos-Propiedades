@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Inicio</title>
+    <title>Propiedad</title>
 </head>
 <body>
     <div class="container">
@@ -36,21 +36,21 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="nav navbar-nav mr-auto">
                 <li class="nav-item">
-                  <a class="nav-link" href="/">Inicio</a>
+                  <a class="nav-link" href="index.html">Inicio</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Propiedades
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Casa</a>
-                    <a class="dropdown-item" href="#">Departamento</a>
+                    <a class="dropdown-item" href="propiedades.html">Casa</a>
+                    <a class="dropdown-item" href="propiedades.html">Departamento</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Procesos</a>
+                    <a class="nav-link" href="procesos.html">Procesos</a>
                   </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Contacto</a>
+                  <a class="nav-link" href="contacto.html">Contacto</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Noticias</a>
@@ -58,6 +58,26 @@
               </ul>
             </div>
           </nav>
+    </div>
+    <div class="container" th:object="${propiedad}">
+        <div name="image">
+            <img th:src="@{/assets/{filename}(filename=*{imagenes_propiedad})}" th:alt="*{Titulo_Propiedad}" class="img-fluid rounded w-100">
+        </div>
+        <div name="body">
+            <h2 th:text="*{Titulo_Propiedad}" class="text text-center"></h2>
+            <p th:text="Valor + *{valor}"></p>
+            <p th:text="Baños + *{banios}"></p>
+            <p th:text="Habitaciones + *{habitaciones}"></p>
+            <p th:text="Terrazas + *{terrazas}"></p>
+            <p th:text="Quincho + *{quincho}"></p>
+            <p th:text="M2_Construidos + *{m2_construidos}"></p>
+            <p th:text="M2_de_Terreno + *{m2_terreno}"></p>
+            <p th:text="Estacionamiento + *{estacionamiento}"></p>
+            <p th:text="Patio + *{patio}"></p>
+            <p th:text="Ubicacion + *{ubicacion}"></p>
+            <p th:each="estado_venta_arriendo : ${estadoventa}" th:text="${estado_venta_arriendo.Estado}"></p>
+            <p th:each="tipo_propiedad : ${tipopropiedad}" th:text="${tipo_propiedad.tipo_de_propiedad}"></p>
+        </div>
     </div>
     </div>
     <footer style="background-color: #FAB564; bottom: 0; position: relative; width: 100%;">
@@ -74,13 +94,13 @@
                                 <a href="#" class="nav-link">Inicio</a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">Propiedades</a>
+                                <a href="/propiedades" class="nav-link">Propiedades</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Procesos</a>
+                                <a href="procesos.html" class="nav-link">Procesos</a>
                             </li>
-                            <li>
-                                <a href="#" class="nav-link">Contacto</a>
+                            <li class="nav-item">
+                                <a href="contacto.html" class="nav-link">Contacto</a>
                             </li>
                             <li>
                                 <a href="#" class="nav-link">Noticias</a>
