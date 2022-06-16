@@ -47,10 +47,10 @@
                     <a class="dropdown-item" href="propiedades.html">Departamento</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Procesos</a>
+                    <a class="nav-link" href="/procesos">Procesos</a>
                   </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Contacto</a>
+                  <a class="nav-link" href="/contacto">Contacto</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Noticias</a>
@@ -76,6 +76,19 @@
                 </a>
             </div>
         </div>
+        <h1 class="text-success">
+            ULTIMAS NOTICIAS 
+        </h2>
+        <div class="row">
+            <div class="col-md-3 my-5" th:each="noticias : ${noticias}" th:object="${noticias}">
+                <a th:href="@{/noticia/}+${noticias.id_noticia}" class="card shadow-lg" style="text-decoration: none;">
+                    <img th:src="@{/assets/{filename}(filename=*{imagen_noticia})}" class="card-img-top">
+                    <div class="card-body">
+                        <p th:text="*{Titulo_Noticia}"></p>
+                     </div>
+                </a>
+            </div>
+        </div>
     </div>
     </div>
     <footer style="background-color: #FAB564; bottom: 0; position: relative; width: 100%;">
@@ -95,10 +108,10 @@
                                 <a href="/propiedades" class="nav-link">Propiedades</a>
                             </li>
                             <li class="nav-item">
-                                <a href="procesos.html" class="nav-link">Procesos</a>
+                                <a href="/procesos" class="nav-link">Procesos</a>
                             </li>
                             <li class="nav-item">
-                                <a href="contacto.html" class="nav-link">Contacto</a>
+                                <a href="/contacto" class="nav-link">Contacto</a>
                             </li>
                             <li>
                                 <a href="#" class="nav-link">Noticias</a>

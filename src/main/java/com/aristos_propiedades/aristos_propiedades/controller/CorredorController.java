@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.aristos_propiedades.aristos_propiedades.model.EstadoVentaArriendo;
+import com.aristos_propiedades.aristos_propiedades.model.Noticias;
 import com.aristos_propiedades.aristos_propiedades.model.Propiedades;
 import com.aristos_propiedades.aristos_propiedades.model.TipoPropiedad;
 import com.aristos_propiedades.aristos_propiedades.repository.estadoVentaRepositorio;
+import com.aristos_propiedades.aristos_propiedades.repository.noticiasRepository;
 import com.aristos_propiedades.aristos_propiedades.repository.propiedadRepository;
 import com.aristos_propiedades.aristos_propiedades.repository.tipoPropiedadRepository;
 import com.aristos_propiedades.aristos_propiedades.service.ImageServiceSuper;
@@ -39,11 +41,16 @@ public class CorredorController {
     @Autowired
     private ImageServiceSuper _ImageService;
 
+    @Autowired
+    private noticiasRepository _NoticiasRepository;
+
     @GetMapping()
     public ModelAndView indexCorredor(@PageableDefault(size = 3) Pageable pageable){
         Page<Propiedades> propiedades = this._propiedadRepository.findAll(pageable);
+        Page<Noticias> noticias = this._NoticiasRepository.findAll(pageable);
         return new ModelAndView("corredor/indexcorredor")
-                                                        .addObject("propiedades", propiedades);
+                                                        .addObject("propiedades", propiedades)
+                                                        .addObject("noticias", noticias);
     }
     
     @GetMapping("/create/propiedades")
