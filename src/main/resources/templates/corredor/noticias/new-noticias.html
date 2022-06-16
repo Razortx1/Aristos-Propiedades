@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Noticias</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container mt-4">
+        <form action="" method="post" th:object="${noticias}" enctype="multipart/form-data">
+            <p>Titulo de la noticia: <input type="text" th:field="*{Titulo_Noticia}" class="form-control" placeholder="Ingrese Titulo" required></p>
+            <p>Mensaje a entregar:
+                <textarea name="contenido" id="contenido" th:field="*{mensaje}" class="form-control" placeholder="Ingrese Mensaje a entregar" required></textarea>
+            </p>
+            <p>Fecha de hoy <input type="date" class="form-control" name="fecha" id="fecha"></p>
+            <p>Ingrese el tipo de noticia
+                <select name="tipo" id="tipo" class="form-control" th:field="*{id_tipo_noticias}">
+                    <option th:value="TipoNoticias.id_tipo_noticias" th:each="TipoNoticias: ${tipon}" th:text="${TipoNoticias.tipo_de_noticias}"></option>
+                </select>
+            </p>
+            <p>Imagenes de noticia</p>
+            <input type="file" name="imagen" id="imagenes" class="form-control" th:field="*{archivo}">
+            <p>
+                <input type="submit" value="Crear Noticia" class="btn btn-info">
+                <input type="reset" value="Borrar formulario" class="btn btn-warning">
+            </p>
+        </form>
+    </div>
+</body>
+</html>
