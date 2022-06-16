@@ -1,16 +1,19 @@
 package com.aristos_propiedades.aristos_propiedades.model;
 
-import java.sql.Blob;
+import javax.persistence.Transient;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
+import org.springframework.web.multipart.MultipartFile;
 @Entity
-public class Departamento {
+public class Propiedades {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_propiedad;
-    private String baños;
+    private String banios;
     private String habitaciones;
     private String terrazas;
     private String m2_terreno;
@@ -19,17 +22,28 @@ public class Departamento {
     private String quincho;
     private String estacionamiento;
     private String patio;
-    private Blob imagenes_propiedad;
+    private String imagenes_propiedad;
     private Integer id_estadoventa;
     private String ubicacion;
     private Integer id_tipo_propiedad;
-    private Integer id_user;
-    public Departamento() {
+    private String Titulo_Propiedad;
+    
+    @Transient
+    private MultipartFile archivoFile;
+    
+    public MultipartFile getArchivoFile() {
+        return archivoFile;
     }
-    public Departamento(String baños, String habitaciones, String terrazas, String m2_terreno, String m2_construidos,
-            String valor, String quincho, String estacionamiento, String patio, Blob imagenes_propiedad,
-            String ubicacion) {
-        this.baños = baños;
+    public void setArchivoFile(MultipartFile archivoFile) {
+        this.archivoFile = archivoFile;
+    }
+    public Propiedades() {
+    }
+    public Propiedades(String banios, String habitaciones, String terrazas, String m2_terreno, String m2_construidos,
+            String valor, String quincho, String estacionamiento, String patio, String imagenes_propiedad,
+            Integer id_estadoventa, String ubicacion, Integer id_tipo_propiedad, String titulo_Propiedad,
+            MultipartFile archivoFile) {
+        this.banios = banios;
         this.habitaciones = habitaciones;
         this.terrazas = terrazas;
         this.m2_terreno = m2_terreno;
@@ -39,7 +53,11 @@ public class Departamento {
         this.estacionamiento = estacionamiento;
         this.patio = patio;
         this.imagenes_propiedad = imagenes_propiedad;
+        this.id_estadoventa = id_estadoventa;
         this.ubicacion = ubicacion;
+        this.id_tipo_propiedad = id_tipo_propiedad;
+        Titulo_Propiedad = titulo_Propiedad;
+        this.archivoFile = archivoFile;
     }
     public Integer getId_propiedad() {
         return id_propiedad;
@@ -47,11 +65,11 @@ public class Departamento {
     public void setId_propiedad(Integer id_propiedad) {
         this.id_propiedad = id_propiedad;
     }
-    public String getBaños() {
-        return baños;
+    public String getBanios() {
+        return banios;
     }
-    public void setBaños(String baños) {
-        this.baños = baños;
+    public void setBanios(String banios) {
+        this.banios = banios;
     }
     public String getHabitaciones() {
         return habitaciones;
@@ -101,10 +119,10 @@ public class Departamento {
     public void setPatio(String patio) {
         this.patio = patio;
     }
-    public Blob getImagenes_propiedad() {
+    public String getImagenes_propiedad() {
         return imagenes_propiedad;
     }
-    public void setImagenes_propiedad(Blob imagenes_propiedad) {
+    public void setImagenes_propiedad(String imagenes_propiedad) {
         this.imagenes_propiedad = imagenes_propiedad;
     }
     public Integer getId_estadoventa() {
@@ -125,12 +143,11 @@ public class Departamento {
     public void setId_tipo_propiedad(Integer id_tipo_propiedad) {
         this.id_tipo_propiedad = id_tipo_propiedad;
     }
-    public Integer getId_user() {
-        return id_user;
+    public String getTitulo_Propiedad() {
+        return Titulo_Propiedad;
     }
-    public void setId_user(Integer id_user) {
-        this.id_user = id_user;
+    public void setTitulo_Propiedad(String titulo_Propiedad) {
+        Titulo_Propiedad = titulo_Propiedad;
     }
-    
     
 }
