@@ -8,10 +8,8 @@ import javax.persistence.Id;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+
 @Entity
-import javax.persistence.Id;
-
-
 public class Usuario {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
