@@ -15,6 +15,7 @@ import com.aristos_propiedades.aristos_propiedades.repository.tipoPropiedadRepos
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 @Controller
 public class AristosController {
     @Autowired
@@ -25,8 +26,10 @@ public class AristosController {
     private tipoPropiedadRepository _TipoPropiedadRepository;
 
     @GetMapping({"/index", ""})
-    public String index() {
-        return "html/index";
+    public ModelAndView indexCorredor(@PageableDefault(size = 3) Pageable pageable){
+        Page<Propiedades> propiedades = this._PropiedadRepository.findAll(pageable);
+        return new ModelAndView("html/index")
+                                                        .addObject("propiedades", propiedades);
     }
 
     @GetMapping("/propiedades")
@@ -45,5 +48,4 @@ public class AristosController {
                                                  .addObject("estadoventa", estado)
                                                  .addObject("tipopropiedad", tipo);
     }
-    
 }

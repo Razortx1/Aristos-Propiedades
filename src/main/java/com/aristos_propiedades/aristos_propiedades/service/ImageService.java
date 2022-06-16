@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -61,6 +62,17 @@ public class ImageService implements ImageServiceSuper{
     @Override
     public Path cargarArchivo(String nombreArchivo) {
         return Paths.get(storageLocation).resolve(nombreArchivo);
+    }
+
+    @Override
+    public void eliminarArchivo(String nombreArchivo) {
+        Path archivo = cargarArchivo(nombreArchivo);
+        try {
+            FileSystemUtils.deleteRecursively(archivo);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
     }
 
 

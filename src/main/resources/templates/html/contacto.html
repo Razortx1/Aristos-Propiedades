@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col">
-                <img src="../image/logo-aristos.png" class="img-responsive" width="225px" height="auto" alt="Aristos-propiedades" style="margin-top: 10px;">
+                <img th:src="@{/assets/{filename}(filename=logo-aristos.png)}" class="img-responsive" width="225px" height="auto" alt="Aristos-propiedades" style="margin-top: 10px;">
             </div>
             <div class="col">
                 
@@ -60,11 +60,11 @@
           </nav>
     </div>
     </div>
-    <footer style="background-color: #FAB564; bottom: 0; position: absolute; width: 100%;">
+    <footer style="background-color: #FAB564; bottom: 0; position: relative; width: 100%;">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col">
-                    <img src="../image/logo-aristos.png" class="img-responsive" width="225px" height="auto" alt="Aristos-propiedades">
+                    <img th:src="@{/assets/{filename}(filename=logo-aristos.png)}" class="img-responsive" width="225px" height="auto" alt="Aristos-propiedades">
                 </div>
                 <div class="col">
                     <h5 style="text-align: center;">Menu</h5>

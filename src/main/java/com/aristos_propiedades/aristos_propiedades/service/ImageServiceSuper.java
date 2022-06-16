@@ -15,4 +15,6 @@ public interface ImageServiceSuper {
     public Path cargarArchivo(String nombreArchivo);
 
     public Resource cargarComoRecurso(String nombreArchivo) throws MalformedURLException;
+
+    public void eliminarArchivo(String nombreArchivo);
 }

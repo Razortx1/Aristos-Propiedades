@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Inicio</title>
+    <title>Corredor</title>
 </head>
+
 <body>
     <div class="container">
         <div class="row align-items-center">
             <div class="col">
-                <img src="../image/logo-aristos.png" class="img-responsive" width="225px" height="auto" alt="Aristos-propiedades" style="margin-top: 10px;">
+                <img th:src="@{/assets/{filename}(filename=logo-aristos.png)}" class="img-responsive" width="225px"
+                    height="auto" alt="Aristos-propiedades" style="margin-top: 10px;">
             </div>
             <div class="col">
-                
+
             </div>
             <div class="col">
                 <p>Numero Teléfonico: +56 9 5987 8564</p>
@@ -34,41 +38,80 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FAB564; margin-top: 25px;">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Propiedades
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Casa</a>
-                    <a class="dropdown-item" href="#">Departamento</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Procesos</a>
-                  </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Contacto</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Noticias</a>
-                  </li>
-              </ul>
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/corredor">Inicio</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Propiedades
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Casa</a>
+                            <a class="dropdown-item" href="#">Departamento</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Procesos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/corredor/create/propiedades">Crear nueva propiedad</a>
+                    </li>
+                </ul>
             </div>
-          </nav>
+        </nav>
     </div>
     <div class="container">
-        <table class="table">
-            
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Titulo</th>
+                    <th>Detalles</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="propiedades: ${propiedades}" th:object="${propiedades}">
+                    <td><img th:src="@{/assets/{filename}(filename=*{imagenes_propiedad})}" th:alt="*{Titulo_Propiedad}"
+                            style="width:400px; height:auto;"></td>
+                    <td th:text="*{Titulo_Propiedad}"></td>
+                    <td>
+                        <label for="banios">Baños</label>
+                        <p th:text="*{banios}"></p>
+                        <label for="habitaciones">Habitaciones</label>
+                        <p th:text="*{habitaciones}"></p>
+                        <label for="valor">Valor UF</label>
+                        <p th:text="*{valor}"></p>
+                        <label for="ubicacion">Ubicacion</label>
+                        <p th:text="*{ubicacion}"></p>
+                    </td>
+                    <td> <a th:href="@{/corredor/edit/}+${propiedades.id_propiedad}" class="btn btn-warning">Editar
+                            Propiedad</a></td>
+                </tr>
+            </tbody>
         </table>
+        <div class="row mt-5" th:with="page=${propiedades}">
+            <div class="col-sm-6">
+                <div sd:pagination-sumary>
+                </div>
+                <div class="col-sm-6">
+                    <nav>
+                        <ul class="pagination" sd:pagination="full"></ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
     </div>
-    <footer style="background-color: #FAB564; bottom: 0; position: absolute; width: 100%;">
+    <footer style="background-color: #FAB564; bottom: 0; position: relative; width: 100%;">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col">
-                    <img src="../image/logo-aristos.png" class="img-responsive" width="225px" height="auto" alt="Aristos-propiedades">
+                    <img th:src="@{/assets/{filename}(filename=logo-aristos.png)}" class="img-responsive" width="225px"
+                        height="auto" alt="Aristos-propiedades">
                 </div>
                 <div class="col">
                     <h5 style="text-align: center;">Menu</h5>
@@ -78,14 +121,14 @@
                                 <a href="#" class="nav-link">Inicio</a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">Propiedades</a>
+                                <a href="#" class="nav-link">Propiedades</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Procesos</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Contacto</a>
-                            </li >
+                            </li>
                             <li>
                                 <a href="#" class="nav-link">Noticias</a>
                             </li>
@@ -105,5 +148,7 @@
             </div>
         </div>
     </footer>
+    
 </body>
+
 </html>
