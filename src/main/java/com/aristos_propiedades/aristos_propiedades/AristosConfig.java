@@ -49,7 +49,7 @@ public class AristosConfig extends WebSecurityConfigurerAdapter  {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-        .antMatchers("/", "/index").permitAll()
+        .antMatchers("/", "/index", "/user/create", "/user", "/user/{id}/delete", "/user/{id}/edit").permitAll()
         .anyRequest().authenticated()
         .and()
             .formLogin()

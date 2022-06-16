@@ -19,15 +19,17 @@
         <p th:text="${session.error}" th:unless="${session == null}"></p>
     </div>
     <div class="container card">
-    <form th:action="@{/login}" method="post">
-        <p>Nombre <input type="text" name="name" placeholder="Ingresa tu Nombre"></p>
-        <p>Contraseña <input type="password" name="password"></p>
-        <p><input type="submit" value="Login" class="btn btn-info"></p>
-    </form>
-    </div>
-    <br>
-    <div class="container">
-    <a href="/" class="btn btn-warning">Volver</a>
+        <form th:action="@{/login}" method="post">
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+              </div>
+              <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+              </div>
+            <p><input type="submit" value="Login" class="btn btn-info"></p>
+        </form>
     </div>
 </body>
 </html>

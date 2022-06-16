@@ -28,7 +28,7 @@ public class CustomUsuarioDetails implements UserDetails{
     @Override
     public String getUsername() {
         // TODO Auto-generated method stub
-        return this.user.getNombre();
+        return this.user.getCorreo();
     }
 
     @Override
