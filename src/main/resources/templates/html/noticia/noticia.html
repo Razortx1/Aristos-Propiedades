@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Inicio</title>
+    <title>Propiedad</title>
 </head>
 <body>
     <div class="container">
@@ -36,7 +36,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="nav navbar-nav mr-auto">
                 <li class="nav-item">
-                  <a class="nav-link" href="/indexcorredor">Inicio</a>
+                  <a class="nav-link" href="index.html">Inicio</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -55,40 +55,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Noticias</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/corredor/listapropiedades">Administrar Propiedades</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/corredor/listarnoticias">Administrar Noticias</a>
-                  </li>
               </ul>
             </div>
           </nav>
+    </div>
+    <div class="container" th:object="${noticias}">
+        <div name="image">
+            <img th:src="@{/assets/{filename}(filename=*{imagen_noticia})}" th:alt="*{Titulo_Noticia}" class="img-fluid rounded w-100">
+        </div>
+        <div name="body">
+
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 my-5" th:each="propiedades : ${propiedades}" th:object="${propiedades}">
-                <a th:href="@{/propiedades/}+${propiedades.id_propiedad}" class="card shadow-lg" style="text-decoration: none;">
-                    <img th:src="@{/assets/{filename}(filename=*{imagenes_propiedad})}" class="card-img-top">
-                    <div class="card-body">
-                        <span class="badge rounded-pull bg-light text-dark me-1" th:each="tipo_propiedad : ${tipoprop}" th:text="${tipo_propiedad.tipo_de_propiedad}"></span>
-                        <h2 class="card-title fs-6" th:text="*{Titulo_Propiedad}"></h2>
-                     </div>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 my-5" th:each="noticia : ${noticia}" th:object="${noticia}">
-                <a th:href="@{/noticia/}+${noticia.id_noticia}" class="card shadow-lg" style="text-decoration: none;">
-                    <img th:src="@{/assets/{filename}(filename=*{imagen_noticia})}" class="card-img-top">
-                    <div class="card-body">
-                        <span class="badge rounded-pull bg-light text-dark me-1" th:each="tipo_propiedad : ${tipoprop}" th:text="${tipo_propiedad.tipo_de_propiedad}"></span>
-                        <h2 class="card-title fs-6" th:text="*{Titulo_Propiedad}"></h2>
-                     </div>
-                </a>
-            </div>
-        </div>
     </div>
     <footer style="background-color: #FAB564; bottom: 0; position: relative; width: 100%;">
         <div class="container">
@@ -104,13 +82,13 @@
                                 <a href="#" class="nav-link">Inicio</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Propiedades</a>
+                                <a href="/propiedades" class="nav-link">Propiedades</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Procesos</a>
+                                <a href="procesos.html" class="nav-link">Procesos</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Contacto</a>
+                                <a href="contacto.html" class="nav-link">Contacto</a>
                             </li>
                             <li>
                                 <a href="#" class="nav-link">Noticias</a>

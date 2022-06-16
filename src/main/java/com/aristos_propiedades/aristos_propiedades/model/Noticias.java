@@ -1,7 +1,7 @@
 package com.aristos_propiedades.aristos_propiedades.model;
 
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -16,9 +18,11 @@ public class Noticias {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_noticia;
-    private String mensaje;
+    private String descripcion_noticia;
     private String imagen_noticia;
-    private Date fecha_noticia;
+    
+    @DateTimeFormat(iso = ISO.DATE)
+    private LocalDate fecha_noticia;
     private Integer id_tipo_noticias;
     private String Titulo_Noticia;
 
@@ -36,8 +40,8 @@ public class Noticias {
     public Noticias() {
     }
     
-    public Noticias(String mensaje, String imagen_noticia, Date fecha_noticia, Integer id_tipo_noticias, String titulo_Noticia, MultipartFile archivo) {
-        this.mensaje = mensaje;
+    public Noticias(String mensaje, String imagen_noticia, LocalDate fecha_noticia, Integer id_tipo_noticias, String titulo_Noticia, MultipartFile archivo) {
+        this.descripcion_noticia = mensaje;
         this.imagen_noticia = imagen_noticia;
         this.fecha_noticia = fecha_noticia;
         this.id_tipo_noticias = id_tipo_noticias;
@@ -51,22 +55,25 @@ public class Noticias {
     public void setId_noticia(Integer id_noticia) {
         this.id_noticia = id_noticia;
     }
-    public String getMensaje() {
-        return mensaje;
+    
+    public String getDescripcion_noticia() {
+        return descripcion_noticia;
     }
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
+
+    public void setDescripcion_noticia(String descripcion_noticia) {
+        this.descripcion_noticia = descripcion_noticia;
     }
+
     public String getImagen_noticia() {
         return imagen_noticia;
     }
     public void setImagen_noticia(String imagen_noticia) {
         this.imagen_noticia = imagen_noticia;
     }
-    public Date getFecha_noticia() {
+    public LocalDate getFecha_noticia() {
         return fecha_noticia;
     }
-    public void setFecha_noticia(Date fecha_noticia) {
+    public void setFecha_noticia(LocalDate fecha_noticia) {
         this.fecha_noticia = fecha_noticia;
     }
     public Integer getId_tipo_noticias() {

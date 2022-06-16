@@ -6,10 +6,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.aristos_propiedades.aristos_propiedades.model.EstadoVentaArriendo;
+import com.aristos_propiedades.aristos_propiedades.model.Noticias;
 import com.aristos_propiedades.aristos_propiedades.model.Propiedades;
+import com.aristos_propiedades.aristos_propiedades.model.TipoNoticias;
 import com.aristos_propiedades.aristos_propiedades.model.TipoPropiedad;
 import com.aristos_propiedades.aristos_propiedades.repository.estadoVentaRepositorio;
+import com.aristos_propiedades.aristos_propiedades.repository.noticiasRepository;
 import com.aristos_propiedades.aristos_propiedades.repository.propiedadRepository;
+import com.aristos_propiedades.aristos_propiedades.repository.tipoNoticiasRepository;
 import com.aristos_propiedades.aristos_propiedades.repository.tipoPropiedadRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,10 @@ public class AristosController {
     private estadoVentaRepositorio _EstadoVentaRepositorio;
     @Autowired 
     private tipoPropiedadRepository _TipoPropiedadRepository;
+    @Autowired
+    private noticiasRepository _NoticiasRepository;
+    @Autowired
+    private tipoNoticiasRepository _TipoNoticiasRepository;
 
     @GetMapping({"/index", ""})
     public ModelAndView indexCorredor(@PageableDefault(size = 3) Pageable pageable){
@@ -47,5 +55,12 @@ public class AristosController {
         return new ModelAndView("html/propiedad").addObject("propiedad", propiedad)
                                                  .addObject("estadoventa", estado)
                                                  .addObject("tipopropiedad", tipo);
+    }
+    @GetMapping("noticia/{id}")
+    public ModelAndView mostrarNoticia(@PathVariable Integer id){
+        Noticias noticia = this._NoticiasRepository.findById(id).get();
+        TipoNoticias tNoticias = this._TipoNoticiasRepository.findById(noticia.getId_tipo_noticias()).get();
+        return new ModelAndView("/html/noticia/noticia").addObject("noticia", noticia)
+                                                        .addObject("noticia", tNoticias);
     }
 }

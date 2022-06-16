@@ -13,12 +13,12 @@
         <form action="" method="post" th:object="${noticias}" enctype="multipart/form-data">
             <p>Titulo de la noticia: <input type="text" th:field="*{Titulo_Noticia}" class="form-control" placeholder="Ingrese Titulo" required></p>
             <p>Mensaje a entregar:
-                <textarea name="contenido" id="contenido" th:field="*{mensaje}" class="form-control" placeholder="Ingrese Mensaje a entregar" required></textarea>
+                <textarea name="contenido" id="contenido" th:field="*{descripcion_noticia}" class="form-control" placeholder="Ingrese Mensaje a entregar" required></textarea>
             </p>
-            <p>Fecha de hoy <input type="date" class="form-control" name="fecha" id="fecha"></p>
+            <p>Fecha de hoy <input type="date" class="form-control" name="fecha" id="fecha" th:field="*{fecha_noticia}"></p>
             <p>Ingrese el tipo de noticia
-                <select name="tipo" id="tipo" class="form-control" th:field="*{id_tipo_noticias}">
-                    <option th:value="TipoNoticias.id_tipo_noticias" th:each="TipoNoticias: ${tipon}" th:text="${TipoNoticias.tipo_de_noticias}"></option>
+                <select name="tiponoticias" id="noticiastipo" th:field="*{id_tipo_noticias}">
+                    <option th:value="${tipo_noticias.id_tipo_noticias}" th:each="tipo_noticias : ${tipon}" th:text="${tipo_noticias.tipo_de_noticias}"></option>
                 </select>
             </p>
             <p>Imagenes de noticia</p>
