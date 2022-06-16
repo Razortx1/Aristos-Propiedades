@@ -29,11 +29,11 @@ public class AristosController {
     public ModelAndView indexCorredor(@PageableDefault(size = 3) Pageable pageable){
         Page<Propiedades> propiedades = this._PropiedadRepository.findAll(pageable);
         return new ModelAndView("html/index")
-                                                        .addObject("propiedades", propiedades);
+                                            .addObject("propiedades", propiedades);
     }
 
     @GetMapping("/propiedades")
-    public ModelAndView mostrarTodasLasPropiedades(Pageable pageable){
+    public ModelAndView mostrarTodasLasPropiedades(@PageableDefault(size = 10) Pageable pageable){
         Page<Propiedades> mpropiedades = this._PropiedadRepository.findAll(pageable);
         return new ModelAndView("html/propiedades")
                     .addObject("propiedades", mpropiedades);

@@ -60,12 +60,17 @@
           </nav>
     </div>
     <div class="container">
+        <h1 class="text-success">
+            ULTIMAS PROPIEDADES AGREGADAS 
+        </h2>
+    </div>
+    <!--Tiene que ser mejorado a que sea ordenada por fecha-->
+    <div class="container">
         <div class="row">
             <div class="col-md-3 my-5" th:each="propiedades : ${propiedades}" th:object="${propiedades}">
                 <a th:href="@{/propiedades/}+${propiedades.id_propiedad}" class="card shadow-lg" style="text-decoration: none;">
                     <img th:src="@{/assets/{filename}(filename=*{imagenes_propiedad})}" class="card-img-top">
                     <div class="card-body">
-                        <span class="badge rounded-pull bg-light text-dark me-1" th:each="tipo_propiedad : ${tipoprop}" th:text="${tipo_propiedad.tipo_de_propiedad}"></span>
                         <h2 class="card-title fs-6" th:text="*{Titulo_Propiedad}"></h2>
                      </div>
                 </a>
