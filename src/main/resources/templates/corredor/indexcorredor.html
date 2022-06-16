@@ -67,6 +67,11 @@
         </div>
     </div>
     <div class="container">
+        <h1 class="text-success">
+            ULTIMAS PROPIEDADES AGREGADAS 
+        </h2>
+    </div>
+    <div class="container">
         <div class="row">
             <div class="col-md-3 my-5" th:each="propiedades : ${propiedades}" th:object="${propiedades}">
                 <a th:href="@{/propiedades/}+${propiedades.id_propiedad}" class="card shadow-lg" style="text-decoration: none;">
@@ -78,13 +83,15 @@
                 </a>
             </div>
         </div>
+        <h1 class="text-success">
+            ULTIMAS NOTICIAS 
+        </h2>
         <div class="row">
-            <div class="col-md-3 my-5" th:each="noticia : ${noticia}" th:object="${noticia}">
-                <a th:href="@{/noticia/}+${noticia.id_noticia}" class="card shadow-lg" style="text-decoration: none;">
+            <div class="col-md-3 my-5" th:each="noticias : ${noticias}" th:object="${noticias}">
+                <a th:href="@{/noticia/}+${noticias.id_noticia}" class="card shadow-lg" style="text-decoration: none;">
                     <img th:src="@{/assets/{filename}(filename=*{imagen_noticia})}" class="card-img-top">
                     <div class="card-body">
-                        <span class="badge rounded-pull bg-light text-dark me-1" th:each="tipo_propiedad : ${tipoprop}" th:text="${tipo_propiedad.tipo_de_propiedad}"></span>
-                        <h2 class="card-title fs-6" th:text="*{Titulo_Propiedad}"></h2>
+                        <p th:text="*{Titulo_Noticia}"></p>
                      </div>
                 </a>
             </div>

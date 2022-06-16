@@ -49,7 +49,8 @@ public class CorredorController {
         Page<Propiedades> propiedades = this._propiedadRepository.findAll(pageable);
         Page<Noticias> noticias = this._NoticiasRepository.findAll(pageable);
         return new ModelAndView("corredor/indexcorredor")
-                                                        .addObject("propiedades", propiedades).addObject("noticias", noticias);
+                                                        .addObject("propiedades", propiedades)
+                                                        .addObject("noticias", noticias);
     }
     
     @GetMapping("/create/propiedades")

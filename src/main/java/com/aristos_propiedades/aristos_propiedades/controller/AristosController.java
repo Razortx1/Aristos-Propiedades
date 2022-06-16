@@ -36,8 +36,10 @@ public class AristosController {
     @GetMapping({"/index", ""})
     public ModelAndView indexCorredor(@PageableDefault(size = 3) Pageable pageable){
         Page<Propiedades> propiedades = this._PropiedadRepository.findAll(pageable);
+        Page<Noticias> noticias = this._NoticiasRepository.findAll(pageable);
         return new ModelAndView("html/index")
-                                            .addObject("propiedades", propiedades);
+                                            .addObject("propiedades", propiedades)
+                                            .addObject("noticias", noticias);
     }
 
     @GetMapping("/propiedades")
@@ -62,5 +64,13 @@ public class AristosController {
         TipoNoticias tNoticias = this._TipoNoticiasRepository.findById(noticia.getId_tipo_noticias()).get();
         return new ModelAndView("/html/noticia/noticia").addObject("noticia", noticia)
                                                         .addObject("noticia", tNoticias);
+    }
+    @GetMapping("/procesos")
+    public ModelAndView mostrarProcesos(){
+        return new ModelAndView("html/procesos");
+    }
+    @GetMapping("/contacto")
+    public ModelAndView mostrarContacto(){
+        return new ModelAndView("html/contacto");
     }
 }
