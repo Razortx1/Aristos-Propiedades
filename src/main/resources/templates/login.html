@@ -15,9 +15,6 @@
         </h1>
     </div>
     <br>
-    <div th:if="${param.error}">
-        <p th:text="${session.error}" th:unless="${session == null}"></p>
-    </div>
     <div class="container card">
         <form th:action="@{/login}" method="post">
             <div class="form-floating mb-3">
@@ -30,6 +27,9 @@
               </div>
             <p><input type="submit" value="Login" class="btn btn-info"></p>
         </form>
+        <div th:if="${param.error}">
+            <p th:text="${session.error}" th:unless="${session == null}"></p>
+        </div>
     </div>
 </body>
 </html>
