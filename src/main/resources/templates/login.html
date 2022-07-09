@@ -19,11 +19,11 @@
         </div> 
         <form th:action="@{/login}" method="post" class="form">
             <div class="form-floating mb-3">
-                <input type="text" id="username" name="username" class="form-control" placeholder="name@example.com" required="" autofocus="">
+                <input type="text" id="username" name="username" class="form-control" placeholder="name@example.com" required autofocus>
                 <label for="username" class="sr-only">Email</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
                 <label for="floatingPassword">Password</label>
             </div>
               <p><input type="submit" value="Iniciar Sesion" class="btn btn-warning"></p>

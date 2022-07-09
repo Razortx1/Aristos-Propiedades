@@ -57,7 +57,7 @@ public class CorredorController {
     public ModelAndView mostrarFormularioCrearPropiedad(){
         List<TipoPropiedad> tiposp =  _tiporepository.findAll();
         List<EstadoVentaArriendo> estado = _ventaRepositorio.findAll();
-        return new ModelAndView("/html/reg-prop")
+        return new ModelAndView("corredor/reg-prop")
                                                 .addObject("propiedad", new Propiedades())
                                                 .addObject("tipoprop", tiposp)
                                                 .addObject("estadoprop", estado);
