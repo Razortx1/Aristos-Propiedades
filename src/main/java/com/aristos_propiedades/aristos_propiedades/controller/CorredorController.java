@@ -85,7 +85,7 @@ public class CorredorController {
                                                 .addObject("tipoprop", tiposp)
                                                 .addObject("estadoprop", estado);
     }
-    @PostMapping("edit/{id}")
+    @PostMapping("/edit/{id}")
     public ModelAndView actualizarPropiedad(@PathVariable Integer id, @Validated Propiedades propiedad, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             List<TipoPropiedad> tiposp =  _tiporepository.findAll();

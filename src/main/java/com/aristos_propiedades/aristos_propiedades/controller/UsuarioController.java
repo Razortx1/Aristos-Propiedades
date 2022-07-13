@@ -52,9 +52,10 @@ public class UsuarioController {
     }
     
     @GetMapping("/user/{id}/edit")
-    public String editUser(Model model, @PathVariable("id")Integer id){
-        model.addAttribute("user", this._UserService.getById(id));
-        return "html/administrador/edit-user";
+    public ModelAndView editUser(@PathVariable("id")Integer id){
+        Usuario user = this._UserService.getById(id);
+        List<Rol> rol = this._rolrepository.findAll();
+        return new ModelAndView("html/administrador/edit-user").addObject("user", user).addObject("rol", rol);
     }
 
     @PutMapping("/user/{id}/update")
