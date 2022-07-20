@@ -1,30 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Propiedad</title>
+    <title>Noticia</title>
 </head>
+
 <body>
     <div th:insert="html/layout-nav::nav">
-
+    </div>
+    <div class="container" th:object="${noticia}">
+        <div class="row">
+            <div class="col-md-3 ms-md-auto">
+                <h2 th:text="*{Titulo_Noticia}" class="text text-center"></h2>
+            </div>
+            <div class="col-md-3 ms-md-auto">
+                <h4 class="text-muted">Compartir en:</h4>
+                <div class="icons">
+                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                    <a href=""><i class="fab fa-instagram"></i></a>
+                    <a href=""><i class="fab fa-whatsapp"></i></a>
+                    <a href=""><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <p th:text="Fecha + ' ' +  De + ' ' + Publicación + ':' + ' ' + *{fecha_noticia}"></p>
+        </div>
+        <div name="row">
+            <img th:src="@{/assets/{filename}(filename=*{imagen_noticia})}" th:alt="*{Titulo_Noticia}"
+                class="rounded mx-auto d-block" width="500px" height="auto" alt="Aristos-propiedades"
+                style="margin-top: 10px; margin-bottom: 10px;">
+        </div>
+        <div class="row">
+            <h3 class="text text-center">Descripcion</h4>
+            <p th:text="*{descripcion_noticia}" class="text text-center"></p>
+        </div>
     </div>
     </div>
-    <!--<div class="container" th:object="${noticias}">
-        <div name="image">
-            <img th:src="@{/assets/{filename}(filename=*{imagen_noticia})}" th:alt="*{Titulo_Noticia}" class="img-fluid rounded w-100">
-        </div>
-        <div name="body">
-
-        </div>
-    </div>-->
     <footer th:insert="html/layout-footer::footer">
     </footer>
 </body>
+
 </html>

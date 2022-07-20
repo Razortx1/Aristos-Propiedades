@@ -40,7 +40,7 @@
                 <td th:text="${usuario.nombre}"></td>
                 <td th:text="${usuario.apellido}"></td>
                 <td>
-                    <!--<a th:href="'/user/' +${usuario.id_user} +'/edit'" class="btn btn-warning btn-sm">Editar</a>-->
+                    <a th:href="'/user/' +${usuario.id_user} +'/edit'" class="btn btn-warning btn-sm">Editar</a>
                 </td>
                 <td>
                     <form th:action="@{/user/{id}/delete(id=${usuario.id_user})}" method="post">

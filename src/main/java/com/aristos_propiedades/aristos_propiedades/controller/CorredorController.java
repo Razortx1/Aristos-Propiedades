@@ -52,7 +52,7 @@ public class CorredorController {
                                                         .addObject("propiedades", propiedades)
                                                         .addObject("noticias", noticias);
     }
-    
+    //Envia al usuario a un formulario 
     @GetMapping("/create/propiedades")
     public ModelAndView mostrarFormularioCrearPropiedad(){
         List<TipoPropiedad> tiposp =  _tiporepository.findAll();
@@ -62,6 +62,7 @@ public class CorredorController {
                                                 .addObject("tipoprop", tiposp)
                                                 .addObject("estadoprop", estado);
     }
+    //Una vez el usuario de clic al boton crear del formulario, esta parte se ejecuta para guardar la propiedad en la BD
     @PostMapping("/create/propiedades")
     public ModelAndView crearNuevaPropiedad(@Validated Propiedades propiedad){
         String patharchivo=this._ImageService.almacenerArchivo(propiedad.getArchivoFile());
@@ -69,12 +70,14 @@ public class CorredorController {
         this._propiedadRepository.save(propiedad);
         return new ModelAndView("redirect:/corredor/listapropiedades");
     }
+    //Muestra todas las propiedades en una tabla
     @GetMapping("/listapropiedades")
     public ModelAndView listarPropiedades(@PageableDefault(size = 5) Pageable pageable){
         Page<Propiedades> propiedades = this._propiedadRepository.findAll(pageable);
         return new ModelAndView("corredor/propiedades")
                                                         .addObject("propiedades", propiedades);
     }
+    //Envia al usuario a un formulario para editar alguna propiedad
     @GetMapping("/edit/{id}")
     public ModelAndView editarPropiedades(@PathVariable Integer id){
         Propiedades propiedad = this._propiedadRepository.findById(id).get();
@@ -85,6 +88,7 @@ public class CorredorController {
                                                 .addObject("tipoprop", tiposp)
                                                 .addObject("estadoprop", estado);
     }
+    //Una vez de clic al boton editar, esta parte editará lo que tenga que editar
     @PostMapping("/edit/{id}")
     public ModelAndView actualizarPropiedad(@PathVariable Integer id, @Validated Propiedades propiedad, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {

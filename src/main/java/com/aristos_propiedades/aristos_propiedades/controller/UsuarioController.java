@@ -25,6 +25,7 @@ public class UsuarioController {
     private UsuarioService _UserService;
     @Autowired
     private RolRepository _rolrepository;
+    //Permite al usuario ingresar a una tabla donde se mostrarán todos los usuarios creados hasta la fecha
     @GetMapping("/user")
     public String getUsers(Model model, @RequestParam(required = false, defaultValue ="")String filter){
         List<Usuario> users;
@@ -36,6 +37,7 @@ public class UsuarioController {
         model.addAttribute("users",users);
         return "html/administrador/list-user";
     }
+    //Envia al usuario a un formulario donde pueda crear a los usuarios
     @GetMapping("/user/create")
     public ModelAndView createUser(){
         List<Rol>rol=_rolrepository.findAll();
@@ -43,28 +45,27 @@ public class UsuarioController {
         .addObject("usuario", new Usuario())
         .addObject("rol", rol);
     }
-
+    //Una vez se de clic al boton del formulario para crear, esta parte del codigo se encarga de guardar al usuario en la BD
     @PostMapping("/user")
     public String saveUser(Model model, @ModelAttribute Usuario user){
        Usuario u = this._UserService.createUser(user);
        model.addAttribute("user",u);
        return "redirect:/user";
     }
-    
+    //Envia al usuario a un formulario para poder editar algun usuario
     @GetMapping("/user/{id}/edit")
     public ModelAndView editUser(@PathVariable("id")Integer id){
         Usuario user = this._UserService.getById(id);
         List<Rol> rol = this._rolrepository.findAll();
         return new ModelAndView("html/administrador/edit-user").addObject("user", user).addObject("rol", rol);
     }
-
+    //Una vez se da clic al boton del formulario, esta parte del codigo se encarga de mandar una peticion para actualizar el usuario
     @PutMapping("/user/{id}/update")
     public String updateUser(Model model, @PathVariable("id") Integer id, @ModelAttribute Usuario user) throws Exception{
-        Usuario u = this._UserService.editUser(id, user);
-        model.addAttribute("user",u);
+        this._UserService.editUser(id, user);
         return "redirect:/user";
     }
-
+    //Manda una peticion al servicio para eliminar un usuario
     @DeleteMapping("/user/{id}/delete")
     public String delteUser(Model model, @PathVariable("id") Integer id){
         this._UserService.deleteUser(id);
