@@ -26,7 +26,8 @@
                 <a th:href="@{/propiedades/}+${propiedades.id_propiedad}" class="card shadow-lg" style="text-decoration: none;">
                     <img th:src="@{/assets/{filename}(filename=*{imagenes_propiedad})}" class="card-img-top">
                     <div class="card-body">
-                        <h2 class="card-title fs-6" th:text="*{Titulo_Propiedad}"></h2>
+                        <p class="card-title" th:text="*{Titulo_Propiedad}"></p>
+                        <p class="card-body" th:text="Valor + ' ' + *{valor} + ' ' + UF"></p>
                      </div>
                 </a>
             </div>
