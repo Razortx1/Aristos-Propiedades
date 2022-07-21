@@ -3,6 +3,8 @@ package com.aristos_propiedades.aristos_propiedades.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.aristos_propiedades.aristos_propiedades.model.EstadoVentaArriendo;
@@ -15,6 +17,7 @@ import com.aristos_propiedades.aristos_propiedades.repository.noticiasRepository
 import com.aristos_propiedades.aristos_propiedades.repository.propiedadRepository;
 import com.aristos_propiedades.aristos_propiedades.repository.tipoNoticiasRepository;
 import com.aristos_propiedades.aristos_propiedades.repository.tipoPropiedadRepository;
+import com.aristos_propiedades.aristos_propiedades.service.emailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,7 +35,8 @@ public class AristosController {
     private noticiasRepository _NoticiasRepository;
     @Autowired
     private tipoNoticiasRepository _TipoNoticiasRepository;
-
+    @Autowired
+    private emailService mailService;
     @GetMapping({"/index", ""})
     public ModelAndView indexCorredor(@PageableDefault(size = 3) Pageable pageable){
         Page<Propiedades> propiedades = this._PropiedadRepository.findAll(pageable);
@@ -71,6 +75,14 @@ public class AristosController {
     }
     @GetMapping("/contacto")
     public ModelAndView mostrarContacto(){
+        return new ModelAndView("html/contacto");
+    }
+    @PostMapping("/sendMail")
+    public ModelAndView sendMail(@RequestParam("name") String name, @RequestParam("mail") String mail, @RequestParam("subject") String subject, @RequestParam("body") String body){
+
+        String message = body +"\n\n Datos de contacto: " + "\nNombre: " + name + "\nE-mail: " + mail;
+        mailService.sendEmail("niko.meneses40@gmail.com","espectrogamer755@gmail.com",subject,message);
+
         return new ModelAndView("html/contacto");
     }
 }
