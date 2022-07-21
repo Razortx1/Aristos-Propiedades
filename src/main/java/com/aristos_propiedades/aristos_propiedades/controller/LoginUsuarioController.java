@@ -8,9 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class LoginUsuarioController {
+    //Envia al usuario para que este pueda iniciar sesion dentro del sistema
     @GetMapping("/login")
     public String getLogin(HttpServletRequest request, HttpSession session){
         session.setAttribute("error", "Error al validar el usuario");
         return "login";
+    }
+    @GetMapping("/403")
+    public String getError403(){
+        return "403error";
     }
 }

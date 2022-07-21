@@ -33,6 +33,7 @@ public class AristosController {
     @Autowired
     private tipoNoticiasRepository _TipoNoticiasRepository;
 
+    //Envia 3 propiedades y noticias a la pagina de inicio
     @GetMapping({"/index", ""})
     public ModelAndView indexCorredor(@PageableDefault(size = 3) Pageable pageable){
         Page<Propiedades> propiedades = this._PropiedadRepository.findAll(pageable);
@@ -41,13 +42,14 @@ public class AristosController {
                                             .addObject("propiedades", propiedades)
                                             .addObject("noticias", noticias);
     }
-
+    //Estre representa el codigo de cuando el usuario presiona en propiedades mostrando todas las propiedades existentes en el sistema
     @GetMapping("/propiedades")
     public ModelAndView mostrarTodasLasPropiedades(@PageableDefault(size = 10) Pageable pageable){
         Page<Propiedades> mpropiedades = this._PropiedadRepository.findAll(pageable);
         return new ModelAndView("html/propiedades")
                     .addObject("propiedades", mpropiedades);
     }
+    //Muestra los detalles de la propiedad elegida
     @GetMapping("propiedades/{id}")
     public ModelAndView mostrarPropiedad(@PathVariable Integer id){
         Propiedades propiedad = this._PropiedadRepository.findById(id).get();
@@ -58,12 +60,13 @@ public class AristosController {
                                                  .addObject("estadoventa", estado)
                                                  .addObject("tipopropiedad", tipo);
     }
+    //Muestra los detalles de la noticia elegida
     @GetMapping("noticia/{id}")
     public ModelAndView mostrarNoticia(@PathVariable Integer id){
         Noticias noticia = this._NoticiasRepository.findById(id).get();
         TipoNoticias tNoticias = this._TipoNoticiasRepository.findById(noticia.getId_tipo_noticias()).get();
         return new ModelAndView("/html/noticia/noticia").addObject("noticia", noticia)
-                                                        .addObject("noticia", tNoticias);
+                                                        .addObject("tnoticia", tNoticias);
     }
     @GetMapping("/procesos")
     public ModelAndView mostrarProcesos(){
