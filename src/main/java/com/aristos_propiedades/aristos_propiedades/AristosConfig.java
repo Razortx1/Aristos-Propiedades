@@ -50,7 +50,6 @@ public class AristosConfig extends WebSecurityConfigurerAdapter  {
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
         .antMatchers("/", "/index","/assets/{filename:.+}").permitAll()
-        .antMatchers("/admin").hasAnyAuthority("1")
         .anyRequest().authenticated()
         .and()
             .formLogin()
@@ -59,5 +58,6 @@ public class AristosConfig extends WebSecurityConfigurerAdapter  {
         .and()
             .logout()
             .permitAll();
+        http.cors().and().csrf().disable();
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,11 +21,16 @@ import com.aristos_propiedades.aristos_propiedades.repository.RolRepository;
 import com.aristos_propiedades.aristos_propiedades.service.UsuarioService;
 
 @Controller
+@RequestMapping("/admin")
 public class UsuarioController {
     @Autowired
     private UsuarioService _UserService;
     @Autowired
     private RolRepository _rolrepository;
+    @GetMapping()
+    public String inicio(){
+        return "html/administrador/index";
+    }
     //Permite al usuario ingresar a una tabla donde se mostrarán todos los usuarios creados hasta la fecha
     @GetMapping("/user")
     public String getUsers(Model model, @RequestParam(required = false, defaultValue ="")String filter){

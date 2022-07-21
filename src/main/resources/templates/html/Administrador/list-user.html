@@ -18,12 +18,10 @@
     <div th:insert="/html/Administrador/layout-nav::nav" class="mb-3">
     </div>
     <div class="container mb-3">
-    </div>
-    <div class="container form-control search mb-3">
         <h3>Lista de Corredores</h3>
-        <form th:action="@{/usuario}" method="get">
+        <form th:action="@{/admin/user}" method="get">
             <input type="text" name="filter">
-            <input type="submit" value="buscar" class="btn btn-primary btn-sm">
+            <input type="submit" value="Buscar" class="btn btn-primary btn-sm">
         </form>
     </div>
     <div class="container">
@@ -40,10 +38,10 @@
                 <td th:text="${usuario.nombre}"></td>
                 <td th:text="${usuario.apellido}"></td>
                 <td>
-                    <a th:href="'/user/' +${usuario.id_user} +'/edit'" class="btn btn-warning btn-sm">Editar</a>
+                    <a th:href="'/admin/user/' +${usuario.id_user} +'/edit'" class="btn btn-warning btn-sm">Editar</a>
                 </td>
                 <td>
-                    <form th:action="@{/user/{id}/delete(id=${usuario.id_user})}" method="post">
+                    <form th:action="@{/admin/user/{id}/delete(id=${usuario.id_user})}" method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="submit" value="delete" class="btn btn-danger btn-sn">
                     </form>
