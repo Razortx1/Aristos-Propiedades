@@ -14,4 +14,8 @@ public class LoginUsuarioController {
         session.setAttribute("error", "Error al validar el usuario");
         return "login";
     }
+    @GetMapping("/403")
+    public String getError403(){
+        return "403error";
+    }
 }

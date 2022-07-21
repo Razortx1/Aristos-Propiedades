@@ -56,7 +56,7 @@ public class UsuarioController {
     public String saveUser(Model model, @ModelAttribute Usuario user){
        Usuario u = this._UserService.createUser(user);
        model.addAttribute("user",u);
-       return "redirect:/user";
+       return "redirect:/admin/user";
     }
     //Envia al usuario a un formulario para poder editar algun usuario
     @GetMapping("/user/{id}/edit")
@@ -69,12 +69,12 @@ public class UsuarioController {
     @PutMapping("/user/{id}/update")
     public String updateUser(Model model, @PathVariable("id") Integer id, @ModelAttribute Usuario user) throws Exception{
         this._UserService.editUser(id, user);
-        return "redirect:/user";
+        return "redirect:/admin/user";
     }
     //Manda una peticion al servicio para eliminar un usuario
     @DeleteMapping("/user/{id}/delete")
     public String delteUser(Model model, @PathVariable("id") Integer id){
         this._UserService.deleteUser(id);
-        return "redirect:/user";
+        return "redirect:/admin/user";
     }
 }
