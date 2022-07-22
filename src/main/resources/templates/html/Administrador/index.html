@@ -18,10 +18,16 @@
     <div th:insert="html/administrador/layout-nav::nav">
     </div>
     <div class="container">
-        <div class="col">
-            <img th:src="@{/assets/{filename}(filename=logo-aristos.png)}" class="mb-5" width="1000px"
-                height="auto" alt="Aristos-propiedades" style="margin-top: 10px;">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <img th:src="@{/assets/{filename}(filename=logoCortado.png)}" class="mb-5" width="1000px" height="auto"
+                    alt="Aristos-propiedades" style="margin-top: 10px;">
+            </div>
+
+            <div class="col"></div>
         </div>
+        <h1 class="text text-center">Seleccione la operacion a realizar</h1>
     </div>
     <footer th:insert="html/administrador/layout-footer::footer">
     </footer>
