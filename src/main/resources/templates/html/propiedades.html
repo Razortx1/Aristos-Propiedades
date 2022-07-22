@@ -18,7 +18,7 @@
         <div class="row">
             <div class="row">
                 <div class="col-md-3 my-5" th:each="propiedades : ${propiedades}" th:object="${propiedades}">
-                    <a th:href="@{/propiedad/}+${propiedades.id_propiedad}" class="card shadow-lg" style="text-decoration: none;">
+                    <a th:href="@{/propiedad/}+${propiedades.idpropiedad}" class="card shadow-lg" style="text-decoration: none;">
                         <img th:src="@{/assets/{filename}(filename=*{imagenes_propiedad})}" class="card-img-top">
                         <div class="card-body">
                             <p class="card-title" th:text="*{Titulo_Propiedad}"></p>

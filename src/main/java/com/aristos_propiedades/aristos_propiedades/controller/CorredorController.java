@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -45,9 +47,9 @@ public class CorredorController {
     private noticiasRepository _NoticiasRepository;
 
     @GetMapping()
-    public ModelAndView indexCorredor(@PageableDefault(size = 3) Pageable pageable){
-        Page<Propiedades> propiedades = this._propiedadRepository.findAll(pageable);
-        Page<Noticias> noticias = this._NoticiasRepository.findAll(pageable);
+    public ModelAndView indexCorredor(){
+        List<Propiedades> propiedades = this._propiedadRepository.findAll(PageRequest.of(0, 3, Sort.by("idpropiedad").descending())).toList();
+        List<Noticias> noticias = this._NoticiasRepository.findAll(PageRequest.of(0, 3, Sort.by("idnoticia").descending())).toList();
         return new ModelAndView("corredor/indexcorredor")
                                                         .addObject("propiedades", propiedades)
                                                         .addObject("noticias", noticias);

@@ -82,15 +82,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 my-5" th:each="propiedades : ${propiedades}" th:object="${propiedades}">
-                <a th:href="@{/propiedad/}+${propiedades.id_propiedad}" class="card shadow-lg"
-                    style="text-decoration: none;">
+                <a th:href="@{/propiedad/}+${propiedades.idpropiedad}" class="card shadow-lg" style="text-decoration: none;">
                     <img th:src="@{/assets/{filename}(filename=*{imagenes_propiedad})}" class="card-img-top">
                     <div class="card-body">
                         <p class="card-title" th:text="*{Titulo_Propiedad}"></p>
                         <p class="card-body" th:text="Valor + ' ' + *{valor} + ' ' + UF"></p>
                         <p class="fas fa-bed" th:text="' ' +*{habitaciones}"></p>
                         <p class="fas fa-toilet" th:text="' ' + *{banios}"></p>
-                    </div>
+                     </div>
                 </a>
             </div>
         </div>
@@ -99,12 +98,11 @@
             </h2>
             <div class="row">
                 <div class="col-md-3 my-5" th:each="noticias : ${noticias}" th:object="${noticias}">
-                    <a th:href="@{/noticia/}+${noticias.id_noticia}" class="card shadow-lg"
-                        style="text-decoration: none;">
+                    <a th:href="@{/noticia/}+${noticias.idnoticia}" class="card shadow-lg" style="text-decoration: none;">
                         <img th:src="@{/assets/{filename}(filename=*{imagen_noticia})}" class="card-img-top">
                         <div class="card-body">
                             <p th:text="*{Titulo_Noticia}"></p>
-                        </div>
+                         </div>
                     </a>
                 </div>
             </div>

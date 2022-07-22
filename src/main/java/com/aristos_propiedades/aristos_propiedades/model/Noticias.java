@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class Noticias {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_noticia;
+    private Integer idnoticia;
     private String descripcion_noticia;
     private String imagen_noticia;
     
@@ -49,11 +49,11 @@ public class Noticias {
         this.archivo = archivo;
     }
 
-    public Integer getId_noticia() {
-        return id_noticia;
+    public Integer getIdnoticia() {
+        return idnoticia;
     }
-    public void setId_noticia(Integer id_noticia) {
-        this.id_noticia = id_noticia;
+    public void setIdnoticia(Integer idnoticia) {
+        this.idnoticia = idnoticia;
     }
     
     public String getDescripcion_noticia() {
