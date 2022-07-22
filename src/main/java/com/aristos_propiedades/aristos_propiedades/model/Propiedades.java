@@ -55,10 +55,8 @@ public class Propiedades {
         this.imagenes_propiedad = imagenes_propiedad;
         this.id_estadoventa = id_estadoventa;
         this.ubicacion = ubicacion;
-
         this.idtipopropiedad = idtipopropiedad;
-
-        Titulo_Propiedad = titulo_Propiedad;
+        this.Titulo_Propiedad = titulo_Propiedad;
         this.archivoFile = archivoFile;
     }
     public Integer getId_propiedad() {
