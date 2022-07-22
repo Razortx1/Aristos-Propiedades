@@ -3,6 +3,8 @@ package com.aristos_propiedades.aristos_propiedades.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.aristos_propiedades.aristos_propiedades.model.EstadoVentaArriendo;
@@ -15,6 +17,8 @@ import com.aristos_propiedades.aristos_propiedades.repository.noticiasRepository
 import com.aristos_propiedades.aristos_propiedades.repository.propiedadRepository;
 import com.aristos_propiedades.aristos_propiedades.repository.tipoNoticiasRepository;
 import com.aristos_propiedades.aristos_propiedades.repository.tipoPropiedadRepository;
+import com.aristos_propiedades.aristos_propiedades.service.AristosService;
+import com.aristos_propiedades.aristos_propiedades.service.emailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,6 +36,11 @@ public class AristosController {
     private noticiasRepository _NoticiasRepository;
     @Autowired
     private tipoNoticiasRepository _TipoNoticiasRepository;
+    @Autowired
+    private emailService mailService;
+    @Autowired
+    private AristosService _AristosService;
+
 
     //Envia 3 propiedades y noticias a la pagina de inicio
     @GetMapping({"/index", ""})
@@ -44,13 +53,25 @@ public class AristosController {
     }
     //Estre representa el codigo de cuando el usuario presiona en propiedades mostrando todas las propiedades existentes en el sistema
     @GetMapping("/propiedades")
-    public ModelAndView mostrarTodasLasPropiedades(@PageableDefault(size = 10) Pageable pageable){
+    public ModelAndView mostrarTodasLasPropiedades(@PageableDefault(size = 8) Pageable pageable){
         Page<Propiedades> mpropiedades = this._PropiedadRepository.findAll(pageable);
         return new ModelAndView("html/propiedades")
                     .addObject("propiedades", mpropiedades);
     }
+    @GetMapping("/propiedades/{id}")
+    public ModelAndView mostrarLasPropiedades(@PageableDefault(size = 8) Pageable pageable, Integer filter){
+        Page<Propiedades> mpropiedades;
+        if (filter == null) {
+            mpropiedades = this._PropiedadRepository.findAll(pageable);
+        }
+        else{
+            mpropiedades = this._AristosService.getPropiedadesByTipo(filter);
+        }
+        return new ModelAndView("html/propiedades")
+                    .addObject("propiedades", mpropiedades);
+    }
     //Muestra los detalles de la propiedad elegida
-    @GetMapping("propiedades/{id}")
+    @GetMapping("/propiedad/{id}")
     public ModelAndView mostrarPropiedad(@PathVariable Integer id){
         Propiedades propiedad = this._PropiedadRepository.findById(id).get();
         TipoPropiedad tipo = this._TipoPropiedadRepository.findById(propiedad.getIdtipopropiedad()).get();
@@ -75,5 +96,13 @@ public class AristosController {
     @GetMapping("/contacto")
     public ModelAndView mostrarContacto(){
         return new ModelAndView("html/contacto");
+    }
+    @PostMapping("/sendMail")
+    public ModelAndView sendMail(@RequestParam("name") String name, @RequestParam("mail") String mail, @RequestParam("subject") String subject, @RequestParam("body") String body){
+
+        String message = body +"\n\n Datos de contacto: " + "\nNombre: " + name + "\nE-mail: " + mail;
+        mailService.sendEmail("niko.meneses40@gmail.com","nicolas.meneses12@inacapmail.cl",subject,message);
+
+        return new ModelAndView("redirect:/contacto");
     }
 }

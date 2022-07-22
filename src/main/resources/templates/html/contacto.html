@@ -9,11 +9,41 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Inicio</title>
+    <title>Contacto</title>
 </head>
 <body>
     <div th:insert="html/layout-nav::nav">
     </div>
+    <form method="POST" th:action="@{/sendMail}" id="emailForm" class="container">
+        <div class="form-group">
+            <label>Nombre</label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                <div class="input-group-addon"><i class="fa fa-fw fa-user" aria-hidden="true"></i></div>
+                <input type="text" class="form-control" name="name" placeholder="Nombre"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Correo</label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                <div class="input-group-addon">@</div>
+                <input type="text" class="form-control" name="mail" placeholder="Correo electónico"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Assunto</label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                <div class="input-group-addon"><i class="fa fa-fw fa-envelope-open" aria-hidden="true"></i></div>
+                <input type="text" class="form-control" name="subject" placeholder="Assunto"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Mensaje</label>
+            <textarea class="form-control" rows="5" name="body"></textarea>
+        </div>
+        <div style="margin-bottom: 10px">
+            <button type="submit" class="btn btn-success">Enviar</button>
+        </div>
+    </form>
     <footer th:insert="html/layout-footer::footer">
     </footer>
 </body>

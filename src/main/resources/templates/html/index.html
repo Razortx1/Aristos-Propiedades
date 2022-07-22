@@ -23,11 +23,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 my-5" th:each="propiedades : ${propiedades}" th:object="${propiedades}">
-                <a th:href="@{/propiedades/}+${propiedades.id_propiedad}" class="card shadow-lg" style="text-decoration: none;">
+                <a th:href="@{/propiedad/}+${propiedades.id_propiedad}" class="card shadow-lg" style="text-decoration: none;">
                     <img th:src="@{/assets/{filename}(filename=*{imagenes_propiedad})}" class="card-img-top">
                     <div class="card-body">
                         <p class="card-title" th:text="*{Titulo_Propiedad}"></p>
                         <p class="card-body" th:text="Valor + ' ' + *{valor} + ' ' + UF"></p>
+                        <p class="fas fa-bed" th:text="' ' +*{habitaciones}"></p>
+                        <p class="fas fa-toilet" th:text="' ' + *{banios}"></p>
                      </div>
                 </a>
             </div>

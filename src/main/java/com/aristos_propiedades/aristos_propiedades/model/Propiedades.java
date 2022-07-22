@@ -55,7 +55,9 @@ public class Propiedades {
         this.imagenes_propiedad = imagenes_propiedad;
         this.id_estadoventa = id_estadoventa;
         this.ubicacion = ubicacion;
+<
         this.idtipopropiedad = idtipopropiedad;
+
         Titulo_Propiedad = titulo_Propiedad;
         this.archivoFile = archivoFile;
     }
@@ -137,11 +139,13 @@ public class Propiedades {
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
+
     public Integer getIdtipopropiedad() {
         return idtipopropiedad;
     }
     public void setIdtipopropiedad(Integer idtipopropiedad) {
         this.idtipopropiedad = idtipopropiedad;
+
     }
     public String getTitulo_Propiedad() {
         return Titulo_Propiedad;

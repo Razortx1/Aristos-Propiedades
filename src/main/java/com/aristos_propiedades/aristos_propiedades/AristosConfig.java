@@ -49,8 +49,9 @@ public class AristosConfig extends WebSecurityConfigurerAdapter  {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-        .antMatchers("/", "/index","/assets/{filename:.+}", "/propiedades/**","/noticia/**", "/contacto", "/procesos").permitAll()
-        .antMatchers("/corredor").hasAnyAuthority("Corredor")
+
+        .antMatchers("/", "/index","/assets/{filename:.+}", "/propiedades/**", "/propiedad/**","/noticia/**", "/contacto", "/procesos", "/sendMail").permitAll()
+
         .anyRequest().authenticated()
         .and()
             .formLogin()
