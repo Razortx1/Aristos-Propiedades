@@ -17,6 +17,7 @@ import com.aristos_propiedades.aristos_propiedades.repository.noticiasRepository
 import com.aristos_propiedades.aristos_propiedades.repository.propiedadRepository;
 import com.aristos_propiedades.aristos_propiedades.repository.tipoNoticiasRepository;
 import com.aristos_propiedades.aristos_propiedades.repository.tipoPropiedadRepository;
+import com.aristos_propiedades.aristos_propiedades.service.AristosService;
 import com.aristos_propiedades.aristos_propiedades.service.emailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,9 @@ public class AristosController {
     private tipoNoticiasRepository _TipoNoticiasRepository;
     @Autowired
     private emailService mailService;
+    @Autowired
+    private AristosService _AristosService;
+
 
     //Envia 3 propiedades y noticias a la pagina de inicio
     @GetMapping({"/index", ""})
@@ -49,13 +53,25 @@ public class AristosController {
     }
     //Estre representa el codigo de cuando el usuario presiona en propiedades mostrando todas las propiedades existentes en el sistema
     @GetMapping("/propiedades")
-    public ModelAndView mostrarTodasLasPropiedades(@PageableDefault(size = 10) Pageable pageable){
+    public ModelAndView mostrarTodasLasPropiedades(@PageableDefault(size = 8) Pageable pageable){
         Page<Propiedades> mpropiedades = this._PropiedadRepository.findAll(pageable);
         return new ModelAndView("html/propiedades")
                     .addObject("propiedades", mpropiedades);
     }
+    @GetMapping("/propiedades/{id}")
+    public ModelAndView mostrarLasPropiedades(@PageableDefault(size = 8) Pageable pageable, Integer filter){
+        Page<Propiedades> mpropiedades;
+        if (filter == null) {
+            mpropiedades = this._PropiedadRepository.findAll(pageable);
+        }
+        else{
+            mpropiedades = this._AristosService.getPropiedadesByTipo(filter);
+        }
+        return new ModelAndView("html/propiedades")
+                    .addObject("propiedades", mpropiedades);
+    }
     //Muestra los detalles de la propiedad elegida
-    @GetMapping("propiedades/{id}")
+    @GetMapping("/propiedad/{id}")
     public ModelAndView mostrarPropiedad(@PathVariable Integer id){
         Propiedades propiedad = this._PropiedadRepository.findById(id).get();
         TipoPropiedad tipo = this._TipoPropiedadRepository.findById(propiedad.getId_tipo_propiedad()).get();
