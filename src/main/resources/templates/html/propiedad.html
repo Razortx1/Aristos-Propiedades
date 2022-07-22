@@ -27,7 +27,9 @@
                 <div class="icons">
                     <a><i class="fab fa-facebook-f"></i></a>
                     <a><i class="fab fa-instagram"></i></a>
-                    <a href="https://api.whatsapp.com/send?phone=56958651677&text=Hola,%20Estoy%20interesado%20en%20una%20propiedad"><i class="fab fa-whatsapp"></i></a>
+                    <a
+                        href="https://api.whatsapp.com/send?phone=56958651677&text=Hola,%20Estoy%20interesado%20en%20una%20propiedad"><i
+                            class="fab fa-whatsapp"></i></a>
                     <a><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
@@ -121,13 +123,14 @@
                                 <p th:text="*{patio}"></p>
                             </td>
                             <td>
+                                <p><strong>Ubicacion</strong></p>
                             </td>
                             <td>
+                                <p th:text="*{ubicacion}"></p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <p th:text="Ubicacion + *{ubicacion}"></p>
             </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ced-sidebar-area">
