@@ -104,7 +104,7 @@ public class CorredorController {
         propiedades.setEstacionamiento(propiedad.getEstacionamiento());
         propiedades.setHabitaciones(propiedad.getHabitaciones());
         propiedades.setId_estadoventa(propiedad.getId_estadoventa());
-        propiedades.setId_tipo_propiedad(propiedad.getId_tipo_propiedad());
+        propiedades.setIdtipopropiedad(propiedad.getIdtipopropiedad());
         propiedades.setM2_construidos(propiedad.getM2_construidos());
         propiedades.setM2_terreno(propiedad.getM2_terreno());
         propiedades.setPatio(propiedad.getPatio());
