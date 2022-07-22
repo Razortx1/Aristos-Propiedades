@@ -85,7 +85,7 @@ public class AristosController {
     public ModelAndView sendMail(@RequestParam("name") String name, @RequestParam("mail") String mail, @RequestParam("subject") String subject, @RequestParam("body") String body){
 
         String message = body +"\n\n Datos de contacto: " + "\nNombre: " + name + "\nE-mail: " + mail;
-        mailService.sendEmail("niko.meneses40@gmail.com","espectrogamer755@gmail.com",subject,message);
+        mailService.sendEmail("niko.meneses40@gmail.com","nicolas.meneses12@inacapmail.cl",subject,message);
 
         return new ModelAndView("redirect:/contacto");
     }
