@@ -13,7 +13,7 @@ import com.aristos_propiedades.aristos_propiedades.repository.IUsuarioJpaReposit
 public class CustomUserDetailsService  implements UserDetailsService{
     @Autowired
     private IUsuarioJpaRepository _Repository;
-
+    //A traves de un filtro para el correo realiza una verificacion de la existencia de un usuario
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         Usuario user = this._Repository.findByCorreo(username);

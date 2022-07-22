@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizacion de Propiedades</title>
+    <title>Registro de Propiedades</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
@@ -21,15 +21,15 @@
         <div class="row">
             <div class="col"></div>
             <div class="col">
-                <form th:action="@{/edit/}+${propiedad.id_propiedad}" method="post" th:object="${propiedad}"
+                <form th:action="@{/corredor/create/propiedades}" method="post" th:object="${propiedad}"
                     enctype="multipart/form-data">
                     <p>Titulo: <input type="text" id="Titulo_Propiedad" placeholder="Ingrese el titulo"
                             th:field="*{Titulo_Propiedad}" required></p>
                     <p>Tipo de propiedad: <select name="tipo_propiedad" id="tipo_propiedad"
                             th:field="*{id_tipo_propiedad}">
-                            <option th:value="${tipo_propiedad.id_tipo_propiedad}"
-                                th:each="tipo_propiedad : ${tipoprop}" th:text="${tipo_propiedad.tipo_de_propiedad}">
-                            </option>
+                            <option th:each="tipo_propiedad : ${tipoprop}"
+                                th:value="${tipo_propiedad.id_tipo_propiedad}"
+                                th:text="${tipo_propiedad.tipo_de_propiedad}"></option>
                         </select></p>
                     <p>Venta o Arriendo: <select name="estadoventaarriendo" id="ventaarriendo"
                             th:field="*{id_estadoventa}">
@@ -66,7 +66,7 @@
                     <p><input type="file" name="archivoFile" class="form-control" id="archivoFile"
                             th:field="*{archivoFile}" required></p>
                     <p>
-                        <input type="submit" value="Editar Propiedad" class="btn btn-info">
+                        <input type="submit" value="Crear Propiedad" class="btn btn-info">
                         <input type="reset" value="Borrar formulario" class="btn btn-warning">
                     </p>
                 </form>
