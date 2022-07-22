@@ -41,7 +41,7 @@ public class Propiedades {
     }
     public Propiedades(String banios, String habitaciones, String terrazas, String m2_terreno, String m2_construidos,
             String valor, String quincho, String estacionamiento, String patio, String imagenes_propiedad,
-            Integer id_estadoventa, String ubicacion, Integer id_tipo_propiedad, String titulo_Propiedad,
+            Integer id_estadoventa, String ubicacion, Integer idtipopropiedad, String titulo_Propiedad,
             MultipartFile archivoFile) {
         this.banios = banios;
         this.habitaciones = habitaciones;
@@ -55,7 +55,9 @@ public class Propiedades {
         this.imagenes_propiedad = imagenes_propiedad;
         this.id_estadoventa = id_estadoventa;
         this.ubicacion = ubicacion;
-        this.idtipopropiedad = id_tipo_propiedad;
+<
+        this.idtipopropiedad = idtipopropiedad;
+
         Titulo_Propiedad = titulo_Propiedad;
         this.archivoFile = archivoFile;
     }
@@ -137,11 +139,13 @@ public class Propiedades {
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
-    public Integer getId_tipo_propiedad() {
+
+    public Integer getIdtipopropiedad() {
         return idtipopropiedad;
     }
-    public void setId_tipo_propiedad(Integer id_tipo_propiedad) {
-        this.idtipopropiedad = id_tipo_propiedad;
+    public void setIdtipopropiedad(Integer idtipopropiedad) {
+        this.idtipopropiedad = idtipopropiedad;
+
     }
     public String getTitulo_Propiedad() {
         return Titulo_Propiedad;

@@ -74,7 +74,7 @@ public class AristosController {
     @GetMapping("/propiedad/{id}")
     public ModelAndView mostrarPropiedad(@PathVariable Integer id){
         Propiedades propiedad = this._PropiedadRepository.findById(id).get();
-        TipoPropiedad tipo = this._TipoPropiedadRepository.findById(propiedad.getId_tipo_propiedad()).get();
+        TipoPropiedad tipo = this._TipoPropiedadRepository.findById(propiedad.getIdtipopropiedad()).get();
         EstadoVentaArriendo estado = this._EstadoVentaRepositorio.findById(propiedad.getId_estadoventa()).get();
 
         return new ModelAndView("html/propiedad").addObject("propiedad", propiedad)

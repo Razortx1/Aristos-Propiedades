@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.aristos_propiedades.aristos_propiedades.model.CustomUsuarioDetails;
 import com.aristos_propiedades.aristos_propiedades.model.Usuario;
 import com.aristos_propiedades.aristos_propiedades.repository.IUsuarioJpaRepository;
-
 public class CustomUserDetailsService  implements UserDetailsService{
     @Autowired
     private IUsuarioJpaRepository _Repository;
