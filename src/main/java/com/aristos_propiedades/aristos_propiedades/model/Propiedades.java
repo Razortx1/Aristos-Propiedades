@@ -25,7 +25,7 @@ public class Propiedades {
     private String imagenes_propiedad;
     private Integer id_estadoventa;
     private String ubicacion;
-    private Integer id_tipo_propiedad;
+    private Integer idtipopropiedad;
     private String Titulo_Propiedad;
     
     @Transient
@@ -55,7 +55,7 @@ public class Propiedades {
         this.imagenes_propiedad = imagenes_propiedad;
         this.id_estadoventa = id_estadoventa;
         this.ubicacion = ubicacion;
-        this.id_tipo_propiedad = id_tipo_propiedad;
+        this.idtipopropiedad = id_tipo_propiedad;
         Titulo_Propiedad = titulo_Propiedad;
         this.archivoFile = archivoFile;
     }
@@ -138,10 +138,10 @@ public class Propiedades {
         this.ubicacion = ubicacion;
     }
     public Integer getId_tipo_propiedad() {
-        return id_tipo_propiedad;
+        return idtipopropiedad;
     }
     public void setId_tipo_propiedad(Integer id_tipo_propiedad) {
-        this.id_tipo_propiedad = id_tipo_propiedad;
+        this.idtipopropiedad = id_tipo_propiedad;
     }
     public String getTitulo_Propiedad() {
         return Titulo_Propiedad;
