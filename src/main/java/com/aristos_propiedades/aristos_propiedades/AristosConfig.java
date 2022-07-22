@@ -26,12 +26,12 @@ public class AristosConfig extends WebSecurityConfigurerAdapter  {
     public UserDetailsService userDetailsService(){
         return new CustomUserDetailsService();
     }
-
+    //Realiza la encriptacion de la contraseña
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
+    
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider aProvider = new DaoAuthenticationProvider();
@@ -45,11 +45,13 @@ public class AristosConfig extends WebSecurityConfigurerAdapter  {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.authenticationProvider(authenticationProvider());
     }
-
+    //Permite la configuracion de los permisos de seguridad del sistema
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-        .antMatchers("/", "/index", "/user/create", "/user", "/user/{id}/delete", "/user/{id}/edit", "/assets/{filename:.+}").permitAll()
+
+        .antMatchers("/", "/index","/assets/{filename:.+}", "/propiedades/**", "/propiedad/**","/noticia/**", "/contacto", "/procesos", "/sendMail").permitAll()
+
         .anyRequest().authenticated()
         .and()
             .formLogin()
@@ -57,6 +59,9 @@ public class AristosConfig extends WebSecurityConfigurerAdapter  {
             .permitAll()
         .and()
             .logout()
-            .permitAll();
+            .permitAll()
+        .and()
+            .exceptionHandling().accessDeniedPage("/403");
+        http.cors().and().csrf().disable();
     }
 }

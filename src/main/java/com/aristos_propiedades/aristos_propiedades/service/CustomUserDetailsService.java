@@ -9,11 +9,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.aristos_propiedades.aristos_propiedades.model.CustomUsuarioDetails;
 import com.aristos_propiedades.aristos_propiedades.model.Usuario;
 import com.aristos_propiedades.aristos_propiedades.repository.IUsuarioJpaRepository;
-
 public class CustomUserDetailsService  implements UserDetailsService{
     @Autowired
     private IUsuarioJpaRepository _Repository;
-
+    //A traves de un filtro para el correo realiza una verificacion de la existencia de un usuario
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         Usuario user = this._Repository.findByCorreo(username);

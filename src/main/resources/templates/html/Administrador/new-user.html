@@ -1,25 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuevo Usuario</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-    <h3>Nuevo usuario</h3>
-    <form th:action="@{/user}" th:object="${usuario}" method="post">
-        <p>Correo: <input type="email" th:field="*{correo}" required></p>
-        <p>Nombre:<input type="text" th:field="*{nombre}" required></p>
-        <p>Apellido: <input type="text" th:field="*{apellido}" required></p>
-        <p>Seleccion el rol: <select name="rol" id="rol" th:field="*{id_rol}">
-            <option th:value="${rol.id_rol}" th:each="rol: ${rol}" th:text="${rol.Rol}"></option>
-        </select></p>
-        <p>Password: <input type="password" th:field="*{contraseña}" required></p>
-        <p><input type="submit" value="Crear Usuario" class="btn btn-primary btn-sm"> <input type="reset" value="limpiar" class="btn btn-primary btn-sm"></p>
-    </form>
-    <a href="/user">ver lista de usuarios</a>
+    <div th:insert="html/Administrador/layout-nav::nav">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <h3 class="text">Nuevo usuario</h3> <br>
+                <form th:action="@{/admin/user}" th:object="${usuario}" method="post">
+                    <p>Correo: <input type="email" th:field="*{correo}" class="form-control" required></p>
+                    <p>Nombre:<input type="text" th:field="*{nombre}" class="form-control" required></p>
+                    <p>Apellido: <input type="text" th:field="*{apellido}" class="form-control" required></p>
+                    <p>Seleccion el rol: <select name="rol" id="rol" th:field="*{id_rol}" class="form-control">
+                            <option th:value="${rol.id_rol}" th:each="rol: ${rol}" th:text="${rol.Rol}"></option>
+                        </select></p>
+                    <p>Password: <input type="password" th:field="*{contraseña}" class="form-control" required></p>
+                    <p><input type="submit" value="Crear Usuario" class="btn btn-warning"> <input type="reset"
+                            value="Limpiar" class="btn btn-danger"></p>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+    <footer th:insert="html/Administrador/layout-footer::footer">
+    </footer>
 </body>
+
 </html>
