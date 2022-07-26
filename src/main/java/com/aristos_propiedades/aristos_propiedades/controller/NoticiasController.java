@@ -33,12 +33,14 @@ public class NoticiasController {
     @Autowired
     private ImageService _ImageService;
 
+    //Muestra formulario para crear noticias
     @GetMapping("/create/noticias")
     public ModelAndView formularioCrearNoticias(){
         List<TipoNoticias> tipon = this._TipoNoticiasRepository.findAll();
         return new ModelAndView("/corredor/noticias/new-noticias").addObject("noticias", new Noticias())
                                                                 .addObject("tipon", tipon);
     }
+    //Toma el contenido del formulario y lo envia a la base de datos
     @PostMapping("/create/noticias")
     public ModelAndView crearNuevaPropiedad(@Validated Noticias noticias){
         String patharchivo=this._ImageService.almacenerArchivo(noticias.getArchivo());
@@ -46,12 +48,13 @@ public class NoticiasController {
         this._NoticiasRepository.save(noticias);
         return new ModelAndView("redirect:/corredor/listarnoticias");
     }
-    
+    //Envia una peticion a la base de datos para traer todas las noticias dentro del sistema, mostrandolas
     @GetMapping("/listarnoticias")
     public ModelAndView mostrarNoticias(@PageableDefault(size = 5) Pageable pageable){
         Page<Noticias> noticias = this._NoticiasRepository.findAll(pageable);
         return new ModelAndView("/corredor/noticias/noticias").addObject("noticias", noticias);
     }
+    //Muestra formulario para editar noticias
     @GetMapping("/edit/noticia/{id}")
     public ModelAndView mostrarFormularioNoticias(@PathVariable Integer id){
         Noticias noticia = this._NoticiasRepository.findById(id).get();
@@ -59,6 +62,7 @@ public class NoticiasController {
         return new ModelAndView("/corredor/noticias/new-noticias").addObject("noticias", noticia)
                                                                 .addObject("tipon", tipoNoticias);
     }
+    //Toma todo el contenido del formulario y lo envia a la base de datos
     @PostMapping("/edit/noticia/{id}")
     public ModelAndView actualizarNoticia(@PathVariable Integer id, @Validated Noticias noticias, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
@@ -80,6 +84,7 @@ public class NoticiasController {
         this._NoticiasRepository.save(noticiaEdit);
         return new ModelAndView("redirect:/corredor/listarnoticias");
     }
+    //Toma la id de la noticia y la elimina
     @GetMapping("/delete/noticia/{id}")
 	public String eliminarPelicula(@PathVariable Integer id) {
 		Noticias noticia = this._NoticiasRepository.findById(id).get();

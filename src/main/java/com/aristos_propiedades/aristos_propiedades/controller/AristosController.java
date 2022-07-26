@@ -93,14 +93,17 @@ public class AristosController {
         return new ModelAndView("/html/noticia/noticia").addObject("noticia", noticia)
                                                         .addObject("tnoticia", tNoticias);
     }
+    //Muestra la pagina donde se puede observar el proceso de negocio de la Empresa
     @GetMapping("/procesos")
     public ModelAndView mostrarProcesos(){
         return new ModelAndView("html/procesos");
     }
+    //Muestra formulario de contacto
     @GetMapping("/contacto")
     public ModelAndView mostrarContacto(){
         return new ModelAndView("html/contacto");
     }
+    //URL necesario para procesar la informacion del formulario y asi enviarlo
     @PostMapping("/sendMail")
     public ModelAndView sendMail(@RequestParam("name") String name, @RequestParam("mail") String mail, @RequestParam("subject") String subject, @RequestParam("body") String body){
 
