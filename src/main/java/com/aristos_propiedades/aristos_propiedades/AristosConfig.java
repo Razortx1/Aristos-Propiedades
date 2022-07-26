@@ -51,7 +51,6 @@ public class AristosConfig extends WebSecurityConfigurerAdapter  {
         http.authorizeRequests()
 
         .antMatchers("/", "/index","/assets/{filename:.+}", "/propiedades/**", "/propiedad/**","/noticia/**", "/contacto", "/procesos", "/sendMail").permitAll()
-
         .anyRequest().authenticated()
         .and()
             .formLogin()

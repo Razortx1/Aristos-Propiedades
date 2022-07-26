@@ -11,9 +11,12 @@ public class LoginUsuarioController {
     //Envia al usuario para que este pueda iniciar sesion dentro del sistema
     @GetMapping("/login")
     public String getLogin(HttpServletRequest request, HttpSession session){
-        session.setAttribute("error", "Error al validar el usuario");
+        session.setAttribute("error", "Correo o contraseña no valido");
         return "login";
     }
+    //Envia al usuario a una pagina indicando un error al momento de este iniciar sesion
+    //Este error vendria siendo si es que una cuenta corredor entra a la interfaz de admin
+    //Siendo lo mismo al reves
     @GetMapping("/403")
     public String getError403(){
         return "403error";

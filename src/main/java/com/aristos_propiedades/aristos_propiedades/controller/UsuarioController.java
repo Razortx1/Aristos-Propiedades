@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -52,7 +53,7 @@ public class UsuarioController {
         .addObject("rol", rol);
     }
     //Una vez se de clic al boton del formulario para crear, esta parte del codigo se encarga de guardar al usuario en la BD
-    @PostMapping("/user")
+    @PostMapping("/user/create")
     public String saveUser(Model model, @ModelAttribute Usuario user){
        Usuario u = this._UserService.createUser(user);
        model.addAttribute("user",u);
@@ -66,10 +67,10 @@ public class UsuarioController {
         return new ModelAndView("html/administrador/edit-user").addObject("user", user).addObject("rol", rol);
     }
     //Una vez se da clic al boton del formulario, esta parte del codigo se encarga de mandar una peticion para actualizar el usuario
-    @PutMapping("/user/{id}/update")
-    public String updateUser(Model model, @PathVariable("id") Integer id, @ModelAttribute Usuario user) throws Exception{
+    @PutMapping("/user/{id}/edit")
+    public ModelAndView updateUser(@PathVariable Integer id, @Validated Usuario user) throws Exception{
         this._UserService.editUser(id, user);
-        return "redirect:/admin/user";
+        return new ModelAndView("redirect:/admin/user");
     }
     //Manda una peticion al servicio para eliminar un usuario
     @DeleteMapping("/user/{id}/delete")

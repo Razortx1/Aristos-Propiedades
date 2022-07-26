@@ -17,6 +17,7 @@ public class AssetsController {
     @Autowired
     private ImageServiceSuper _ImageServiceSuper;
 
+    //Permite la muestra de imagenes al sistema
     @GetMapping("/{filename:.+}")
     public Resource obtenerRecurso(@PathVariable String filename) throws MalformedURLException{
         return this._ImageServiceSuper.cargarComoRecurso(filename);

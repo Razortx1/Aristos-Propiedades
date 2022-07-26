@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class Propiedades {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_propiedad;
+    private Integer idpropiedad;
     private String banios;
     private String habitaciones;
     private String terrazas;
@@ -59,11 +59,11 @@ public class Propiedades {
         this.Titulo_Propiedad = titulo_Propiedad;
         this.archivoFile = archivoFile;
     }
-    public Integer getId_propiedad() {
-        return id_propiedad;
+    public Integer getIdpropiedad() {
+        return idpropiedad;
     }
-    public void setId_propiedad(Integer id_propiedad) {
-        this.id_propiedad = id_propiedad;
+    public void setIdpropiedad(Integer idpropiedad) {
+        this.idpropiedad = idpropiedad;
     }
     public String getBanios() {
         return banios;

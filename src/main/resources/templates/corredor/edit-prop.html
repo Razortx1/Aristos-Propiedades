@@ -21,12 +21,12 @@
         <div class="row">
             <div class="col"></div>
             <div class="col">
-                <form th:action="@{/corredor/edit/}+${propiedad.id_propiedad}" method="post" th:object="${propiedad}"
+                <form th:action="@{/corredor/edit/}+${propiedad.idpropiedad}" method="post" th:object="${propiedad}"
                     enctype="multipart/form-data">
                     <p>Titulo: <input type="text" id="Titulo_Propiedad" placeholder="Ingrese el titulo"
                             th:field="*{Titulo_Propiedad}" required></p>
                     <p>Tipo de propiedad: <select name="tipo_propiedad" id="tipo_propiedad"
-                            th:field="*{id_tipo_propiedad}">
+                            th:field="*{idtipopropiedad}">
                             <option th:value="${tipo_propiedad.id_tipo_propiedad}"
                                 th:each="tipo_propiedad : ${tipoprop}" th:text="${tipo_propiedad.tipo_de_propiedad}">
                             </option>

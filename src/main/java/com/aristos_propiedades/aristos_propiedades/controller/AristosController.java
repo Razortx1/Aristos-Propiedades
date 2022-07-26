@@ -20,9 +20,13 @@ import com.aristos_propiedades.aristos_propiedades.repository.tipoPropiedadRepos
 import com.aristos_propiedades.aristos_propiedades.service.AristosService;
 import com.aristos_propiedades.aristos_propiedades.service.emailService;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 @Controller
 public class AristosController {
@@ -44,9 +48,9 @@ public class AristosController {
 
     //Envia 3 propiedades y noticias a la pagina de inicio
     @GetMapping({"/index", ""})
-    public ModelAndView indexCorredor(@PageableDefault(size = 3) Pageable pageable){
-        Page<Propiedades> propiedades = this._PropiedadRepository.findAll(pageable);
-        Page<Noticias> noticias = this._NoticiasRepository.findAll(pageable);
+    public ModelAndView indexCorredor(){
+        List<Propiedades> propiedades = this._PropiedadRepository.findAll(PageRequest.of(0, 3, Sort.by("idpropiedad").descending())).toList();
+        List<Noticias> noticias = this._NoticiasRepository.findAll(PageRequest.of(0, 3, Sort.by("idnoticia").descending())).toList();
         return new ModelAndView("html/index")
                                             .addObject("propiedades", propiedades)
                                             .addObject("noticias", noticias);
@@ -89,14 +93,17 @@ public class AristosController {
         return new ModelAndView("/html/noticia/noticia").addObject("noticia", noticia)
                                                         .addObject("tnoticia", tNoticias);
     }
+    //Muestra la pagina donde se puede observar el proceso de negocio de la Empresa
     @GetMapping("/procesos")
     public ModelAndView mostrarProcesos(){
         return new ModelAndView("html/procesos");
     }
+    //Muestra formulario de contacto
     @GetMapping("/contacto")
     public ModelAndView mostrarContacto(){
         return new ModelAndView("html/contacto");
     }
+    //URL necesario para procesar la informacion del formulario y asi enviarlo
     @PostMapping("/sendMail")
     public ModelAndView sendMail(@RequestParam("name") String name, @RequestParam("mail") String mail, @RequestParam("subject") String subject, @RequestParam("body") String body){
 
